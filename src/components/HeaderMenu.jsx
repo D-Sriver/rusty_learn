@@ -21,7 +21,7 @@ export default function HeaderMenu() {
       gsap.fromTo(
         headerRef.current,
         { scale: 1 },
-        { scale: 1.08, yoyo: true, repeat: 1, duration: 0.22, ease: 'bounce.out' }
+        { scale: 1.08, yoyo: true, repeat: 1, duration: 0.32, ease: 'bounce.out' }
       );
     }
   };
@@ -38,18 +38,18 @@ export default function HeaderMenu() {
         gsap.to(header, {
           x: 0,
           y: 0,
-          duration: 0.7,
+          duration: 0.5,
           ease: 'expo.out',
           onStart: () => {
             gsap.to(header, {
               scaleX: 1.18,
               scaleY: 0.85,
-              duration: 0.18,
+              duration: 0.20,
               ease: 'power1.out',
               yoyo: true,
               repeat: 1,
               onComplete: () => {
-                gsap.to(header, { scaleX: 1, scaleY: 1, duration: 0.18, ease: 'elastic.out(1, 0.4)' });
+                gsap.to(header, { scaleX: 1, scaleY: 1, duration: 0.2, ease: 'elastic.out(1, 0.4)' });
               }
             });
           },
@@ -64,7 +64,7 @@ export default function HeaderMenu() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-30 w-[90vw] max-w-3xl rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-white/20 flex items-center justify-center gap-8 py-3 px-6 cursor-grab active:cursor-grabbing"
+      className="w-1/2 min-w-[400px] md:min-w-[300px] 300 shadow-xl backdrop-blur-md bg-white/10 rounded-2xl border border-white/10 flex items-center justify-center  gap-2 md:gap-8 p-3"
       style={{ touchAction: 'none' }}
     >
       {links.map((link) => (
@@ -74,11 +74,11 @@ export default function HeaderMenu() {
           onClick={handleClick}
           className={`font-bold text-lg px-4 py-1 rounded transition-colors duration-200 select-none cursor-pointer
             ${location.pathname === link.to ? 'text-yellow-400' : 'text-white/90 hover:text-yellow-300'}`}
-          style={{ WebkitBackdropFilter: 'blur(8px)' }}
+          style={{ WebkitBackdropFilter: 'blur(5px)' }}
         >
           {link.label}
         </Link>
       ))}
     </header>
   );
-} 
+}
