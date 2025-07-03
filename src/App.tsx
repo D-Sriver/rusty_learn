@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import StarField from './StarField';
+import HeaderMenu from './HeaderMenu';
 import logo from '/rusty.png'
 
 function Intro() {
@@ -22,14 +23,10 @@ function Intro() {
 const App = () => {
   return (
     <BrowserRouter>
+      <StarField />
+      <HeaderMenu />
       <Routes>
-        <Route path="/" element={
-          <>
-            <StarField />
-            <Intro />
-          </>
-        } />
-        {/* Ajoute ici d'autres routes plus tard */}
+        <Route path="/" element={<Intro />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
