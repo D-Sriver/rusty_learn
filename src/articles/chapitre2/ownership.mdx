@@ -1,0 +1,17 @@
+---
+title: "Ownership"
+description: "Comprendre le système d'ownership de Rust."
+---
+
+# Ownership
+
+L'ownership est le concept central de Rust pour la gestion de la mémoire.
+
+- Chaque valeur a un propriétaire unique.
+- Lorsqu'une variable sort de la portée, sa valeur est libérée.
+- Le transfert d'ownership se fait lors de l'affectation ou du passage de paramètres.
+
+```rust
+let s1 = String::from("hello");
+let s2 = s1; // s1 n'est plus valide
+``` 

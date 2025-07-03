@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./markdown.css";
 
 body {
   min-height: 100vh;
@@ -35,54 +36,3 @@ body::before {
   50% { transform: rotate(6deg); }
 }
 
-/* Personnalisation du style Markdown (prose) */
-.prose {
-  --tw-prose-body: #e0e7ef;
-  --tw-prose-headings: #facc15;
-  --tw-prose-links: #facc15;
-  --tw-prose-bold: #facc15;
-  --tw-prose-counters: #facc15;
-  --tw-prose-bullets: #facc15;
-  --tw-prose-hr: #facc15;
-  --tw-prose-quotes: #facc15;
-  --tw-prose-quote-borders: #facc15;
-  --tw-prose-captions: #a1a1aa;
-  --tw-prose-code: #facc15;
-  --tw-prose-pre-bg: #23272e;
-  --tw-prose-pre-code: #facc15;
-  --tw-prose-th-borders: #facc15;
-  --tw-prose-td-borders: #23272e;
-}
-
-.prose h1, .prose h2, .prose h3, .prose h4 {
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.prose code {
-  background: #23272e;
-  color: #facc15;
-  border-radius: 0.25rem;
-  padding: 0.1em 0.3em;
-  font-size: 1em;
-}
-
-.prose pre {
-  background: #18181b;
-  color: #facc15;
-  border-radius: 0.5rem;
-  padding: 1em;
-  overflow-x: auto;
-}
-
-.prose blockquote {
-  border-left: 4px solid #facc15;
-  color: #e0e7ef;
-  background: #18181b;
-  padding-left: 1em;
-  font-style: italic;
-}
-
-.cours-card, .cours-card .prose, .cours-card .prose * {
-  color: #fff !important;
-}

@@ -1,48 +1,65 @@
 import React, { useState } from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import CoursContent from '../articles/cours.mdx';
-import IntroContent from '../articles/intro.mdx';
-import VariablesContent from '../articles/variables.mdx';
-import OwnershipContent from '../articles/ownership.mdx';
+import * as mdxPagesRaw from '../articles/mdxIndex';
+import { coursTree } from '../articles/coursData';
+import SideMenu from './SideMenu';
+import Quiz from './Quiz';
 
-const coursList = [
-  { key: 'intro', label: 'Introduction', component: IntroContent },
-  { key: 'variables', label: 'Variables', component: VariablesContent },
-  { key: 'ownership', label: 'Ownership', component: OwnershipContent },
-  { key: 'cours', label: 'Cours complet', component: CoursContent },
-];
-
+const mdxPages = mdxPagesRaw as Record<string, React.ComponentType>;
 const components = {
-  // Personnalisation des balises si besoin (ex: h1, code, blockquote...)
+  Quiz,
+};
+
+// Centralisation des quiz par sous-chapitre
+const quizData: Record<string, Parameters<typeof Quiz>[0]> = {
+  'chap1-types': {
+    question: "Quel type utiliserais-tu pour stocker un nombre entier positif ?",
+    options: [
+      { label: "u32", correct: true },
+      { label: "f64", correct: false },
+      { label: "bool", correct: false },
+      { label: "String", correct: false }
+    ],
+    feedback: {
+      correct: "Bravo, tu as l'œil du crabe !",
+      incorrect: "Ce n'est pas ça, mais tu vas y arriver !"
+    }
+  },
+  // Ajoute ici d'autres quiz pour chaque sous-chapitre si besoin
 };
 
 export default function CoursPage() {
-  const [selected, setSelected] = useState('intro');
-  const SelectedComponent = coursList.find(c => c.key === selected)?.component || IntroContent;
+  const defaultKey = coursTree[0].children[0].key;
+  const [selected, setSelected] = useState(defaultKey);
+
+  let selectedLabel = '';
+  let SelectedComponent: React.ComponentType | null = null;
+  coursTree.forEach(chap => {
+    chap.children.forEach(child => {
+      if (child.key === selected) {
+        selectedLabel = child.label;
+        SelectedComponent = mdxPages[child.importKey] as React.ComponentType;
+      }
+    });
+  });
 
   return (
     <div className="cours-card flex flex-col md:flex-row justify-center items-start min-h-[70vh] w-10/12 gap-6 md:gap-12">
-      <aside className="w-full md:w-64 mb-4 md:mb-0 md:sticky top-32 z-10">
-        <nav className="bg-white/10 border border-white/20 rounded-2xl shadow-lg backdrop-blur-xl p-4 flex md:flex-col flex-row gap-2 md:gap-4">
-          {coursList.map(c => (
-            <button
-              key={c.key}
-              onClick={() => setSelected(c.key)}
-              className={`w-full text-left px-4 py-2 rounded-lg font-bold transition-colors duration-200
-                ${selected === c.key ? 'bg-yellow-400 text-yellow-900 shadow' : 'bg-white/5 text-white/90 hover:bg-yellow-300/30 hover:text-yellow-200'}`}
-            >
-              {c.label}
-            </button>
-          ))}
-        </nav>
+      <aside className="w-full md:w-72 mb-4 md:mb-0 md:sticky top-32 z-10">
+        <SideMenu selected={selected} onSelect={setSelected} />
       </aside>
       <div className="relative w-full max-w-11/12 ">
-        <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden transition-all duration-300 hover:scale-[1.015]">
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
+          <div className="border-b border-white/20 px-8 pt-8 pb-4 md:px-14 md:pt-14 md:pb-6">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow mb-0">{selectedLabel}</h2>
+          </div>
           <div className="prose prose-invert max-w-none px-8 py-10 md:px-14 md:py-14">
             <MDXProvider components={components}>
-              <SelectedComponent />
+              {SelectedComponent && React.createElement(SelectedComponent)}
             </MDXProvider>
+            {quizData[selected] && <Quiz {...quizData[selected]} />}
           </div>
+
         </div>
       </div>
     </div>
