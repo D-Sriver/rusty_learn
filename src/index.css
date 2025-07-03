@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #1a237e 0%, #0d133d 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-size: cover;
+  opacity: 0.7;
+}
