@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
 import gsap from 'gsap';

@@ -3,6 +3,7 @@ import StarField from './components/StarField';
 import HeaderMenu from './components/HeaderMenu';
 import Presentation from './components/Presentation';
 import HeroSection from './components/HeroSection';
+import CoursPage from './components/CoursPage';
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
               <Presentation />
             </>
           } />
-          <Route path="/cours" element={<div className="text-white text-2xl mt-20">Page Cours à venir !</div>} />
+          <Route path="/cours" element={<CoursPage />} />
           <Route path="/ressources" element={<div className="text-white text-2xl mt-20">Page Ressources à venir !</div>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

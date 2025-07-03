@@ -1,0 +1,19 @@
+---
+title: "Ownership"
+description: "Le concept fondamental d'ownership en Rust."
+---
+
+# Ownership
+
+L'ownership est un concept clé de Rust qui garantit la sécurité mémoire sans garbage collector.
+
+- Chaque valeur a un propriétaire unique.
+- Quand le propriétaire sort du scope, la valeur est libérée.
+
+```rust
+{
+    let s = String::from("hello");
+    // s est valide ici
+}
+// s n'est plus valide ici
+``` 
