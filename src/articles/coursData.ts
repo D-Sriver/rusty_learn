@@ -19,4 +19,17 @@ export const coursTree = [
       { key: 'chap2-lifetimes', label: 'Lifetimes', importKey: 'Chap2Lifetimes' },
     ],
   },
-]; 
+];
+
+export type TypeSubChapter = {
+  key: string;
+  label: string;
+  importKey: string;
+};
+
+export type TypeChapter = {
+  key: string;
+  label: string;
+  icon: string;
+  children: TypeSubChapter[];
+}; 

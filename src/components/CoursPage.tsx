@@ -4,10 +4,12 @@ import * as mdxPagesRaw from '../articles/mdxIndex';
 import { coursTree } from '../articles/coursData';
 import SideMenu from './SideMenu';
 import Quiz from './Quiz';
+import AstuceRusty from './AstuceRusty';
 
 const mdxPages = mdxPagesRaw as Record<string, React.ComponentType>;
 const components = {
   Quiz,
+  AstuceRusty,
 };
 
 // Centralisation des quiz par sous-chapitre
@@ -53,7 +55,7 @@ export default function CoursPage() {
           <div className="border-b border-white/20 px-8 pt-8 pb-4 md:px-14 md:pt-14 md:pb-6">
             <h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow mb-0">{selectedLabel}</h2>
           </div>
-          <div className="prose prose-invert max-w-none px-8 py-10 md:px-14 md:py-14">
+          <div className="prose prose-invert">
             <MDXProvider components={components}>
               {SelectedComponent && React.createElement(SelectedComponent)}
             </MDXProvider>

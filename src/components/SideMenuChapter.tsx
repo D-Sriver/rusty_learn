@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { ChevronRight, BookOpen } from "lucide-react";
 import gsap from "gsap";
 import SideMenuSubChapter from "./SideMenuSubChapter";
+import type { TypeChapter } from "../articles/coursData";
 
 const iconMap = {
   BookOpen: <BookOpen className="inline w-5 h-5 mr-2 text-yellow-400" />,
@@ -14,7 +15,7 @@ export default function SideMenuChapter({
   selectedKey,
   onSelect,
 }: {
-  chapter: any;
+  chapter: TypeChapter;
   open: boolean;
   onToggle: () => void;
   selectedKey: string;
@@ -150,7 +151,7 @@ export default function SideMenuChapter({
         className="flex flex-col gap-1 pl-4 border-l-2 border-yellow-400/40 ml-2 bg-white/5 rounded-xl shadow-inner"
       >
         <div ref={contentRef} className="flex flex-col gap-1 py-2">
-          {chapter.children.map((child: any) => (
+          {chapter.children.map((child) => (
             <div
               key={child.key}
               style={{ opacity: 0, transform: "translateY(-10px)" }}
