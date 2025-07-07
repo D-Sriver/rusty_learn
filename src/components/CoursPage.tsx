@@ -1,36 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import * as mdxPagesRaw from '../articles/mdxIndex';
 import { coursTree } from '../articles/coursData';
 import SideMenu from './SideMenu';
-import Quiz from './Quiz';
 import AstuceRusty from './AstuceRusty';
+import QCMDirect from './QCMDirect';
 import { useLocation } from 'react-router-dom';
 import { useCoursStore } from '../store/useCoursStore';
 
 const mdxPages = mdxPagesRaw as Record<string, React.ComponentType>;
 const components = {
-  Quiz,
   AstuceRusty,
+  QCMDirect,
 };
 
-// Centralisation des quiz par sous-chapitre
-const quizData: Record<string, Parameters<typeof Quiz>[0]> = {
-  'chap1-types': {
-    question: "Quel type utiliserais-tu pour stocker un nombre entier positif ?",
-    options: [
-      { label: "u32", correct: true },
-      { label: "f64", correct: false },
-      { label: "bool", correct: false },
-      { label: "String", correct: false }
-    ],
-    feedback: {
-      correct: "Bravo, tu as l'œil du crabe !",
-      incorrect: "Ce n'est pas ça, mais tu vas y arriver !"
-    }
-  },
-  // Ajoute ici d'autres quiz pour chaque sous-chapitre si besoin
-};
 
 export default function CoursPage() {
   const location = useLocation();
@@ -77,12 +60,11 @@ export default function CoursPage() {
           <div className="border-b border-white/20 px-8 pt-8 pb-4 md:px-14 md:pt-14 md:pb-6">
             <h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow mb-0">{selectedLabel}</h2>
           </div>
-          <div className="prose prose-invert">
-            <MDXProvider components={components}>
-              {SelectedComponent && React.createElement(SelectedComponent)}
-            </MDXProvider>
-            {quizData[selected] && <Quiz {...quizData[selected]} />}
-          </div>
+                      <div className="prose prose-invert">
+              <MDXProvider components={components}>
+                {SelectedComponent && React.createElement(SelectedComponent)}
+              </MDXProvider>
+            </div>
 
         </div>
       </div>
