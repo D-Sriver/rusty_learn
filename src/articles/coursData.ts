@@ -1,7 +1,7 @@
 export const coursTree = [
   {
     key: 'chap1',
-    label: 'Chapitre 1 : Les bases',
+    label: 'Les bases',
     icon: 'BookOpen',
     children: [
       { key: 'chap1-intro', label: 'Introduction', importKey: 'Chap1Intro' },
@@ -11,7 +11,7 @@ export const coursTree = [
   },
   {
     key: 'chap2',
-    label: 'Chapitre 2 : Propriété et Emprunt',
+    label: 'Propriété et Emprunt',
     icon: 'BookOpen',
     children: [
       { key: 'chap2-ownership', label: 'Ownership', importKey: 'Chap2Ownership' },

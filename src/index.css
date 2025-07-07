@@ -5,7 +5,6 @@ body {
   min-height: 100vh;
   background: radial-gradient(ellipse at top, #0f155a 0%, #0a0f38 100%);
   position: relative;
-  overflow-x: hidden;
 }
 
 body::before {

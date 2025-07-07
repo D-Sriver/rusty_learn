@@ -11,7 +11,7 @@ export default function HeaderMenu() {
 
   return (
     <header
-      className="w-1/2 min-w-400px md:min-w-300px shadow-xl backdrop-blur-md bg-white/10 rounded-2xl border border-white/10 flex items-center justify-center gap-2 md:gap-8 p-3"
+      className="w-full min-w-400px md:min-w-300px shadow-xl backdrop-blur-md bg-white/10 rounded-2xl border border-white/10 flex items-center justify-center p-3"
       role="banner"
       aria-label="En-tête principal"
     >
@@ -20,7 +20,8 @@ export default function HeaderMenu() {
           <Link
             key={link.to}
             to={link.to}
-            className={`rounded-xl font-bold text-yellow-400 hover:ring-3 transition-colors bg-transparent px-4 py-2 select-none cursor-pointer \
+            className={`font-bold text-lg px-4 py-1 rounded-2xl transition-colors duration-200 select-none cursor-pointer
+            text-yellow-400 \
             ${location.pathname === link.to ? 'ring-2 bg-yellow-300 text-yellow-900 border-yellow-200/60 ' : ''}`}
             style={{ WebkitBackdropFilter: 'blur(5px)' }}
             aria-current={location.pathname === link.to ? 'page' : undefined}

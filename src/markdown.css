@@ -25,12 +25,16 @@
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
   font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-top: 1rem;
-  margin-bottom: 1.2rem;
+  letter-spacing: 0.03em;
   text-shadow: 0 2px 12px #0008;
   display: flex;
   align-items: center;
+}
+
+.prose h2 {
+  border-bottom: 3px solid #facc15;
+  padding: 8px 16px;
+  border-radius: 8px;
 }
 
 .prose h1::before {

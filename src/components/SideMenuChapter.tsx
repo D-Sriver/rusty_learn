@@ -131,10 +131,10 @@ export default function SideMenuChapter({
   }, [open]);
 
   return (
-    <div className="mb-2">
+    <div>
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-4 py-2 rounded-xl font-bold text-yellow-400 hover:bg-yellow-400/10 transition-colors mb-1 focus:outline-none focus:ring-2 focus:ring-yellow-400/40 bg-white/10 border border-white/10"
+        className="w-full flex items-center justify-between px-2 py-2 rounded-xl font-bold text-yellow-400 hover:ring-2 transition-colors mb-1 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 border border-white/10 text-left"
       >
         <span>
           {iconMap[chapter.icon as keyof typeof iconMap]}
@@ -148,13 +148,13 @@ export default function SideMenuChapter({
       <div
         ref={dropdownRef}
         style={{ overflow: "hidden" }}
-        className="flex flex-col gap-1 pl-4 border-l-2 border-yellow-400/40 ml-2 bg-white/5 rounded-xl shadow-inner"
+        className="flex flex-col  bg-white/5 rounded-xl shadow-inner"
       >
-        <div ref={contentRef} className="flex flex-col gap-1 py-2">
+        <div ref={contentRef} className="flex flex-col">
           {chapter.children.map((child) => (
             <div
               key={child.key}
-              style={{ opacity: 0, transform: "translateY(-10px)" }}
+              style={{ opacity: 0 }}
             >
               <SideMenuSubChapter
                 label={child.label}

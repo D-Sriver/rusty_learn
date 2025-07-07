@@ -68,7 +68,7 @@ export default function CoursPage() {
   });
 
   return (
-    <div className="cours-card flex flex-col md:flex-row justify-center items-start min-h-[70vh] w-10/12 gap-6 md:gap-12">
+    <div className="cours-card flex flex-col md:flex-row justify-center items-start min-h-[70vh] w-10/12 gap-6 md:gap-7">
       <aside className="w-full md:w-72 mb-4 md:mb-0 md:sticky top-32 z-10">
         <SideMenu selected={selected} onSelect={setSelected} />
       </aside>
