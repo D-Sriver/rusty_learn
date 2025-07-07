@@ -18,7 +18,7 @@ export default function HeaderMenu() {
           key={link.to}
           to={link.to}
           className={`rounded-xl font-bold text-yellow-400 hover:bg-yellow-400/10 transition-colors bg-transparent px-4 py-2 select-none cursor-pointer \
-            ${location.pathname === link.to ? 'ring-2 ring-yellow-400/30' : ''}`}
+            ${location.pathname === link.to ? 'ring-2 bg-yellow-300 text-yellow-900  shadow-lg border-yellow-200/60 focus:outline-none' : ''}`}
           style={{ WebkitBackdropFilter: 'blur(5px)' }}
         >
           {link.label}

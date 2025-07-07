@@ -44,7 +44,7 @@ export default function Presentation() {
         style={{ WebkitBackdropFilter: 'blur(5px)' }}
         onClick={() => {
           const lastCours = localStorage.getItem('lastCoursPage');
-          navigate(lastCours || '/cours');
+          navigate('/cours');
         }}
         onMouseEnter={() => {
           if (commencerBtnRef.current) {
