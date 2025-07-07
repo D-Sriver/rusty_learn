@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { coursTree } from "../articles/coursData";
 import { BookOpen } from "lucide-react";
 import SideMenuChapter from "./SideMenuChapter";
@@ -14,12 +14,26 @@ export default function SideMenu({
   selected: string;
   onSelect: (key: string) => void;
 }) {
-  const [openChapters, setOpenChapters] = useState([coursTree[0].key]);
+  // Trouve le chapitre parent de la sous-section sélectionnée
+  const getParentChapterKey = (selectedKey: string) => {
+    for (const chap of coursTree) {
+      if (chap.children.some(child => child.key === selectedKey)) {
+        return chap.key;
+      }
+    }
+    return coursTree[0].key; // fallback
+  };
+
+  // Un seul chapitre ouvert à la fois
+  const [openChapter, setOpenChapter] = useState(getParentChapterKey(selected));
+
+  // Synchronise dynamiquement le chapitre ouvert avec la sous-section sélectionnée
+  useEffect(() => {
+    setOpenChapter(getParentChapterKey(selected));
+  }, [selected]);
 
   const toggleChapter = (key: string) => {
-    setOpenChapters((prev) =>
-      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
-    );
+    setOpenChapter((prev) => (prev === key ? '' : key));
   };
 
   return (
@@ -28,7 +42,7 @@ export default function SideMenu({
         <SideMenuChapter
           key={chap.key}
           chapter={chap}
-          open={openChapters.includes(chap.key)}
+          open={openChapter === chap.key}
           onToggle={() => toggleChapter(chap.key)}
           selectedKey={selected}
           onSelect={onSelect}

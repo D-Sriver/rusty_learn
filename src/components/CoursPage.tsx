@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import * as mdxPagesRaw from '../articles/mdxIndex';
 import { coursTree } from '../articles/coursData';
 import SideMenu from './SideMenu';
 import Quiz from './Quiz';
 import AstuceRusty from './AstuceRusty';
+import { useLocation } from 'react-router-dom';
+import { useCoursStore } from '../store/useCoursStore';
 
 const mdxPages = mdxPagesRaw as Record<string, React.ComponentType>;
 const components = {
@@ -31,8 +33,28 @@ const quizData: Record<string, Parameters<typeof Quiz>[0]> = {
 };
 
 export default function CoursPage() {
+  const location = useLocation();
   const defaultKey = coursTree[0].children[0].key;
-  const [selected, setSelected] = useState(defaultKey);
+  const selected = useCoursStore((state) => state.selected) || defaultKey;
+  const setSelected = useCoursStore((state) => state.setSelected);
+
+  // Si aucune sous-section n'est sélectionnée (premier chargement), on initialise avec la valeur par défaut
+  useEffect(() => {
+    if (!useCoursStore.getState().selected) {
+      setSelected(defaultKey);
+    }
+  }, [defaultKey, setSelected]);
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/cours')) {
+      localStorage.setItem('lastCoursPage', location.pathname + location.search + location.hash);
+    }
+  }, [location]);
+
+  // N'affiche le menu que si selected est initialisé
+  if (!selected) {
+    return null; // ou un loader si tu veux
+  }
 
   let selectedLabel = '';
   let SelectedComponent: React.ComponentType | null = null;
