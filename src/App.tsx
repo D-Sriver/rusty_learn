@@ -12,7 +12,7 @@ const App = () => {
       <div className="w-full flex justify-center p-8 overflow-hidden">
         <HeaderMenu />
       </div>
-      <main className='flex flex-col items-center justify-center'>
+      <main className='flex flex-col items-center justify-center' id="contenu-principal" tabIndex={-1} aria-label="Contenu principal" role="main">
         <Routes>
           <Route path="/" element={
             <>

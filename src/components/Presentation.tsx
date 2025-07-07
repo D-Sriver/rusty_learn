@@ -25,7 +25,7 @@ export default function Presentation() {
   }, []);
 
   return (
-    <section className="rounded-2xl flex-col shadow-xl backdrop-blur-md bg-white/5 border border-white/10 flex items-center justify-center md:w-1/2 w-3/4 gap-8 p-10">
+    <section className="rounded-2xl flex-col shadow-xl backdrop-blur-md bg-white/5 border border-white/10 flex items-center justify-center md:w-1/2 w-3/4 gap-8 p-10" aria-labelledby="titre-presentation" role="region">
 
       <div className="flex flex-row items-center gap-6 mb-4">
         <div className="flex-shrink-0 flex flex-col items-center">
@@ -56,6 +56,8 @@ export default function Presentation() {
             gsap.to(commencerBtnRef.current, { scale: 1, boxShadow: '0 0 16px 2px #fde04780', duration: 0.2 });
           }
         }}
+        aria-label="Commencer le cours"
+        role="button"
       >
         Commencer
       </Link>

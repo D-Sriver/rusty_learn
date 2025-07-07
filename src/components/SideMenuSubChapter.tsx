@@ -61,7 +61,7 @@ export default function SideMenuSubChapter({
         className="w-2 h-2 rounded-full mr-2"
         style={{ background: selected ? "#facc15" : "#23272e" }}
       ></span>
-      {label}
+      <span className="flex-1 min-w-0 break-words whitespace-normal">{label}</span>
     </button>
   );
 }
