@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import React, { useState } from 'react';
 import StarField from './components/StarField';
 import HeaderMenu from './components/HeaderMenu';
 import Presentation from './components/Presentation';
@@ -7,7 +6,6 @@ import HeroSection from './components/HeroSection';
 import CoursPage from './components/CoursPage';
 
 const App = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <BrowserRouter>
       <StarField />
@@ -22,7 +20,7 @@ const App = () => {
               <Presentation />
             </>
           } />
-          <Route path="/cours" element={<CoursPage setMobileMenuOpen={setMobileMenuOpen} />} />
+          <Route path="/cours" element={<CoursPage />} />
           <Route path="/ressources" element={<div className="text-white text-2xl mt-20">Page Ressources à venir !</div>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
