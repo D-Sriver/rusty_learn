@@ -25,18 +25,17 @@ export default function Quiz({ question, options, feedback }: QuizProps) {
   };
 
   return (
-    <div className="my-6 p-4 bg-white/10 border border-yellow-400/30 rounded-2xl shadow-xl backdrop-blur-md">
+    <div className=" p-4">
       <div className="font-bold text-yellow-400 mb-2 flex items-center gap-2">
-        <span className="text-2xl">🦀</span> QCM de Rusty
       </div>
-      <div className="mb-3 text-lg text-white">{question}</div>
+      <div className="mb-3 font-bold text-yellow-400 rounded-3xl p-2 px-4 bg-transparent border-2">{question}</div>
       <div className="flex flex-col gap-2">
         {options.map((opt, i) => (
           <button
             key={i}
             disabled={answered}
             onClick={() => { setSelected(i); setAnswered(true); }}
-            className={`px-4 py-2 rounded-lg border transition-all text-left
+            className={`px-4 py-2 rounded-3xl border transition-all text-left
               ${answered
                 ? (i === selected
                     ? (opt.correct ? 'bg-yellow-400/20 border-yellow-400 text-yellow-200' : 'bg-red-400/10 border-red-400 text-red-200')

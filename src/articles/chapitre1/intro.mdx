@@ -3,6 +3,7 @@ Salut à toi, ô grand(e) futur(e) talentueux développeur(se) du langage Rust�
 ## Laisse-moi t'expliquer pourquoi ce site existe…
 
 À la base, ce cour (qui n'en est pas tout a fait un), c'était juste un tas de prises de notes durant mon aprentissage.
+
 J'étais parti pour garder mes notes pour moi, mais je me suis dit que ça pourrait servir à d'autres, tout simplement.
 
 J'ai réfléchi et au final j'ai eu envie de partager tout ça, mais à ma façon :  
@@ -16,28 +17,69 @@ Rusty me donnera un coup de main pour étayer mes propos ou simplifier certain c
 > Salut, moi c'est Rusty, je suis la mascotte de ce site et aussi ton meilleur allié si tu ne connais rien à la programmation. 
 > Donc si tu me vois ça veut dire que ça peut être un chouilla compliqué, alors prends la peine de regarder ce que j'ai à dire.
 
-Ici, pas de jargon compliqué, pas de "il faut savoir x,y,z" avant de commencer ce cours.  
+Ici, pas de jargon compliqué, pas de **"il faut savoir x,y,z"** avant de commencer ce cours.  
 On apprend ensemble, on se plante ensemble, et on progresse… ensemble !
 
-## Mais au fait, c'est quoi Rust ?
+## Ok mais au fait, c'est quoi Rust ?
 
 Rust, c'est un langage de programmation moderne, imaginé pour être à la fois **rapide**, **sûr** et **fiable**.  
-Il a été créé pour éviter les bugs "casse-tête" de la mémoire (coucou C++), tout en restant super performant.
+Il a été créé en 2006 par un gars (**Graydon Hoare**) qui voulais éviter les bugs "casse-tête" de la mémoire qu'on peut rencontrer sur des langages comme le C.
 
-> **Astuce de Rusty**  
-> "Rust, c'est comme un super-héros : il te protège des erreurs, mais il te donne aussi des super-pouvoirs pour écrire du code propre et rapide !"
+Ensuite Firefox est venu donner un coup de main au projet en 2009 et depuis 2016 on dit que c'est le meilleur langage du monde ! (C'est pas moi qui le dis !).
 
-## Objectifs de ce chapitre
+Et le plus cool avec Rust ? Il te force à bien programmer dès le début. Pas de "ça marche chez moi" ou de bugs mystérieux à 3h du matin. 
+Si ton code compile, il y a 999,9% chances qu'il fonctionne directement ! (Dans la théorie)
 
-- Comprendre d'où vient Rust (et pourquoi il fait autant parler de lui)
-- Savoir pourquoi tu pourrais l'aimer (ou le détester… mais on va essayer de t'en convaincre !)
-- Découvrir les grandes forces du langage, sans prise de tête
+## Concretement on va faire quoi ?
 
----
+Alors on va commencer de 0
+
+On va apprendre c'est quoi des **variables** et des **fonctions**, puis on attaquera les concepts qui font la force de Rust, mais chaque choses en son temps.
+
+## Allez, un petit quiz !
+
+pour inaugurer ton debut d'apprntissage (si ça t'interesse toujours) on va passer par l'étape du QCM.
+Ne t'inquiète pas, c'est juste pour voir si j'ai été assez clair dans mes explications.
 
 {*QCM de Rusty*
-=Tu est prêt à apprendre le Rust ?=
-1:Oui***
-2:Non
+=Qui a créé Rust ?=
+1:Graydon Hoare***
+2:Bill Gates
+3:Ada Lovelace
+4:Elon Musk
+correct:Exact ! Graydon Hoare a créé Rust en 2006.
+incorrect:Raté, même joueur joue encore.
 }
+
+{*QCM de Rusty*
+=Quel est l'avantage principal de Rust ?=
+1:Il est plus rapide que tous les autres langages
+2:Il élimine les erreurs de mémoire dès la compilation***
+3:Il est plus facile à apprendre que Python
+4:Il a la plus grande communauté de développeurs
+correct:Parfait ! Rust vérifie la sécurité mémoire à la compilation, pas à l'exécution.
+incorrect:C'est pas de bol, tu y étais presque ! Essaie encore...
+}
+
+{*QCM de Rusty*
+=Quels sont les trois mots-clés qui définissent Rust ?=
+1:Rapide, sûr, fiable***
+2:Simple, rapide, moderne
+3:Puissant, complexe, efficace
+4:Moderne, sécurisé, performant
+correct:Exact ! Rust est imaginé pour être "rapide, sûr et fiable".
+incorrect:Ce n'est pas tout à fait ça, mais tu es sur la bonne voie !
+}
+
+{*QCM de Rusty*
+=Que va-t-on apprendre en premier ?=
+1:Les concepts avancés de Rust
+2:Les variables et fonctions***
+3:La gestion mémoire
+4:La syntaxe complexe
+correct:Exact ! On va commencer par les variables et fonctions.
+incorrect:Tu y étais presque ! Un petit effort...
+}
+
+---
 Bon, si t'as compris tout ça, alors on peut commencer !

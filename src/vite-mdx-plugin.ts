@@ -1,3 +1,7 @@
+function escapeQuotes(str: string): string {
+  return str.replace(/"/g, '&quot;');
+}
+
 export function mdxQCMPlugin() {
   return {
     name: 'mdx-qcm-transform',
@@ -18,9 +22,11 @@ export function mdxQCMPlugin() {
         
         // Remplace par un composant React
         const replacement = `<QCMDirect
-  question="${parsed.question}"
+  question="${escapeQuotes(parsed.question)}"
   options={${JSON.stringify(parsed.options)}}
   correctIndex={${parsed.correctIndex}}
+  feedbackCorrect="${escapeQuotes(parsed.feedbackCorrect)}"
+  feedbackIncorrect="${escapeQuotes(parsed.feedbackIncorrect)}"
 />`;
         
         transformedCode = transformedCode.replace(qcmContent, replacement);
@@ -41,8 +47,10 @@ function parseQCMContent(content: string) {
   let question = '';
   const options: string[] = [];
   let correctIndex = 0;
+  let feedbackCorrect = "Bravo, tu as l'œil du crabe !";
+  let feedbackIncorrect = "Ce n'est pas ça, mais tu vas y arriver !";
   
-  lines.forEach((line, index) => {
+  lines.forEach((line) => {
     if (line.startsWith('=') && line.endsWith('=')) {
       // C'est la question
       question = line.slice(1, -1);
@@ -55,8 +63,20 @@ function parseQCMContent(content: string) {
       if (isCorrect) {
         correctIndex = options.length - 1;
       }
+    } else if (line.startsWith('correct:')) {
+      // Feedback pour la bonne réponse
+      feedbackCorrect = line.replace(/^correct:/, '').trim();
+    } else if (line.startsWith('incorrect:')) {
+      // Feedback pour la mauvaise réponse
+      feedbackIncorrect = line.replace(/^incorrect:/, '').trim();
     }
   });
   
-  return { question, options, correctIndex };
+  return { 
+    question, 
+    options, 
+    correctIndex,
+    feedbackCorrect,
+    feedbackIncorrect
+  };
 } 

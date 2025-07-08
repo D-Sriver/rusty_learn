@@ -22,7 +22,7 @@ export default function HeaderMenu() {
             to={link.to}
             className={`font-bold text-lg px-4 py-1 rounded-2xl transition-colors duration-200 select-none cursor-pointer
             text-yellow-400 \
-            ${location.pathname === link.to ? 'ring-2 bg-yellow-300 text-yellow-900 border-yellow-200/60 ' : ''}`}
+            ${location.pathname === link.to ? 'ring-2 bg-yellow-300 text-yellow-900' : ''}`}
             style={{ WebkitBackdropFilter: 'blur(5px)' }}
             aria-current={location.pathname === link.to ? 'page' : undefined}
             tabIndex={0}

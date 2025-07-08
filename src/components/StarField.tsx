@@ -3,12 +3,12 @@ import React, { useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
 import gsap from 'gsap';
 
-const STAR_COUNT = 40;
+const STAR_COUNT = 80;
 const COLORS = [
-  'text-blue-100',
-  'text-blue-200',
-  'text-yellow-200',
-  'text-white/80',
+  'text-yellow-100/50',
+  'text-yellow-200/50',
+  'text-yellow-300/50',
+  'text-yellow-400/50',
 ];
 const SIZES = ['w-3 h-3', 'w-2 h-2', 'w-4 h-4', 'w-2.5 h-2.5'];
 
