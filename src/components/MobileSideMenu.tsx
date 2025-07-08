@@ -63,6 +63,12 @@ export default function MobileSideMenu({ selected, onSelect, open, setOpen }: { 
   // Fermer le menu quand on clique sur un lien principal
   const handleNavClick = () => setOpen(false);
 
+  // Détermine l'onglet actif
+  const isActive = (path: string) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
+
   return (
     <>
       {/* Burger visible uniquement sur mobile */}
@@ -82,33 +88,38 @@ export default function MobileSideMenu({ selected, onSelect, open, setOpen }: { 
       >
         <div
           ref={drawerRef}
-          className="absolute top-0 right-0 h-lvh w-4/5 max-w-xs bg-[#0a0f38] text-yellow-400 p-0 pt-0 translate-x-full flex flex-col focus:outline-none"
+          className="absolute top-0 right-0 border-2 border-yellow-500 h-full w-4/5 max-w-xs bg-[#0a0f38] text-yellow-400 p-0 pt-0 translate-x-full flex flex-col focus:outline-none"
           style={{ borderTopLeftRadius: 24, borderBottomLeftRadius: 24 }}
           tabIndex={0}
         >
-          <div className="flex items-center justify-between px-4 py-4">
-            
+          <div className="flex items-center justify-between px-4 py-4 pt-13">
           </div>
           {/* Liens principaux */}
-          <nav className="flex flex-col gap-2 px-4 pt-12">
+          <nav className="flex flex-col gap-2 px-4 pt-4 pb-2">
             <Link
               to="/"
               onClick={handleNavClick}
-              className={`block w-full rounded-xl px-4 py-3 text-lg font-bold text-yellow-900 bg-yellow-400 hover:bg-yellow-500 transition-colors ${location.pathname === '/' ? 'ring-2 ring-yellow-300' : ''}`}
+              className={`block w-full rounded-xl px-4 py-3 text-lg transition-all font-bold
+                ${isActive('/') ? 'bg-yellow-800 text-yellow-500 font-bold' : 'bg-yellow-400 text-yellow-900'}
+              `}
             >
               Accueil
             </Link>
             <Link
               to="/cours"
               onClick={handleNavClick}
-              className={`block w-full rounded-xl px-4 py-3 text-lg font-bold text-yellow-900 bg-yellow-400 hover:bg-yellow-500 transition-colors ${location.pathname.startsWith('/cours') ? 'ring-2 ring-yellow-300' : ''}`}
+              className={`block w-full rounded-xl px-4 py-3 text-lg transition-all font-bold
+                ${isActive('/cours') ? 'bg-yellow-800 text-yellow-500 font-bold' : 'bg-yellow-400 text-yellow-900'}
+              `}
             >
               Cours
             </Link>
             <Link
               to="/ressources"
               onClick={handleNavClick}
-              className={`block w-full rounded-xl px-4 py-3 text-lg font-bold text-yellow-900 bg-yellow-400 hover:bg-yellow-500 transition-colors ${location.pathname.startsWith('/ressources') ? 'ring-2 ring-yellow-300' : ''}`}
+              className={`block w-full rounded-xl px-4 py-3 text-lg transition-all font-bold
+                ${isActive('/ressources') ? 'bg-yellow-800 text-yellow-500 font-bold' : 'bg-yellow-400 text-yellow-900'}
+              `}
             >
               Ressources
             </Link>

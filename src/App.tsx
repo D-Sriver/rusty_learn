@@ -4,6 +4,7 @@ import HeaderMenu from './components/HeaderMenu';
 import Presentation from './components/Presentation';
 import HeroSection from './components/HeroSection';
 import CoursPage from './components/CoursPage';
+import RessourcesPage from './components/RessourcesPage';
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
             </>
           } />
           <Route path="/cours" element={<CoursPage />} />
-          <Route path="/ressources" element={<div className="text-white text-2xl mt-20">Page Ressources à venir !</div>} />
+          <Route path="/ressources" element={<RessourcesPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

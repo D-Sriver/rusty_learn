@@ -58,7 +58,7 @@ export default function SideMenuSubChapter({
       <span
         ref={dotRef}
         className="w-2 h-2 rounded-full"
-        style={{ background: selected ? "#733e0a" : "#23272e" }}
+        style={{ background: selected ? "#733e0a" : "white" }}
       ></span>
       <span className="flex-1 min-w-0 break-words whitespace-normal">{label}</span>
     </button>

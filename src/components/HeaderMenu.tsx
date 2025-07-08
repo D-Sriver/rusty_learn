@@ -11,7 +11,7 @@ export default function HeaderMenu() {
 
   return (
     <header
-      className="w-full min-w-400px md:min-w-300px shadow-xl backdrop-blur-md bg-white/10 rounded-2xl border border-white/10 flex items-center justify-center p-3"
+      className="w-11/12 shadow-xl backdrop-blur-md bg-white/10 rounded-2xl border border-white/10 flex items-center justify-center p-3"
       role="banner"
       aria-label="En-tête principal"
     >
