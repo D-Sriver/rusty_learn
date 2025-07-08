@@ -1,7 +1,92 @@
-Rust, c'est un langage de programmation moderne, imaginé pour être à la fois **rapide**, **sûr** et **fiable**.  
-Il a été créé en 2006 par un gars (**Graydon Hoare**) qui voulait éviter les bugs "casse-tête" de la mémoire qu'on peut rencontrer sur des langages comme le C.
+Alors Rust, c'est un langage de programmation moderne bas niveau, imaginé pour être à la fois rapide, sûr et fiable.
 
-Ensuite, Firefox est venu donner un coup de main au projet en 2009 et depuis 2016, on dit que c'est le meilleur langage du monde ! (C'est pas moi qui le dis !).
+Il comprend plein de choses dont :
 
-Et le plus cool avec Rust ? Il te force à bien programmer dès le début. Pas de **"ça marche chez moi"** ou de bugs mystérieux à 3h du matin.  
-Si ton code compile, il y a 999,9% de chances qu'il fonctionne directement ! (En théorie)
+- La gestion automatique de la mémoire (plus de fuites mémoire qui te pourrissent la vie)
+- La sécurité à la compilation (le compilateur te dit "non" avant même que ton programme plante)
+- Un système de propriété unique au monde (Rust a vraiment le secret de la gestion mémoire parfaite)
+- Et encore plein d'autres trucs cools qu'on va découvrir ensemble
+
+## Ok et historiquement ?
+
+Alors ce petit langage a été créé en 2006 par un gars **Graydon Hoare** qui en avait assez des bugs "casse-tête" de mémoire qu'on peut rencontrer sur des langages bas niveau comme le C.
+
+Mais attends, c'est pas juste un projet de geek dans son garage ! En 2009, la team de Mozilla a rejoint l'aventure et a donné un vrai coup de boost à Rust.
+
+> Mozilla est une des fondations les plus importantes de l'informatique ! Ils ont créé Firefox, des outils de développement, et militent pour un internet ouvert et plein d'autre choses. Quand une boîte avec ce pedigree dit "on va booster Rust", ça donne instantanément de la crédibilité au projet !
+
+Depuis 2016, il a carrément la réputation d'être le langage préféré des développeurs… Tu seras du même avis à la fin de ce site, qui sait ?
+
+## Il est vraiment si exceptionnel ?
+
+Ce qui rend Rust vraiment unique, c'est qu'il t'oblige à écrire du code propre, dès le départ. Fini les **"ça marche chez moi"** ou les bugs qui débarquent à la compilation après 5h alors que tu pensais avoir tout bien fait.
+
+Si ton code compile, il y a 999,9 % de chances qu'il tourne du premier coup
+
+*(bon, sauf si tu as oublié un point-virgule, mais ça, c'est une autre histoire…)*
+
+> Rust, c'est un peu comme ce pote qui te pousse à donner le meilleur de toi-même, mais sans jamais te juger. Il te guide, il t'encourage, et parfois il râle un peu… mais il te dit toujours ce qui ne va pas et c'est toujours pour ton bien et celui de ton programme.
+
+Et le plus fou ? Même les grosses boîtes comme **Microsoft**, **Amazon** et **Google** l'utilisent. Quand tu vois que les géants du web se mettent à Rust, tu te dis qu'il y a vraiment quelque chose de spécial !
+
+## Mais au fait, c'est quoi un langage "bas niveau" ?
+
+> **Astuce de Rusty**  
+> Un langage "bas niveau", c'est un langage qui parle presque directement à ton ordinateur. C'est comme si tu parlais à ton ordinateur dans sa langue maternelle, au lieu de passer par un traducteur !
+
+Imagine que tu veux faire un gâteau. Avec un langage haut niveau comme Python, c'est comme avoir un robot qui dit "fais-moi un gâteau" et hop, c'est fait ! Avec Rust, c'est comme si tu disais "prends 200g de farine, 3 œufs, mélange doucement, chauffe à 180°C..." - tu contrôles tout, mais tu dois être plus précis.
+
+**Avantages :**
+- Tu contrôles exactement ce qui se passe
+- Ton programme va super vite
+- Tu peux faire des trucs que d'autres langages ne peuvent pas
+
+**Inconvénients :**
+- C'est plus complexe à écrire
+- Tu dois penser à plus de détails
+- Ça prend plus de temps au début
+
+## Pourquoi tout le monde en parle ?
+
+Rust a quelque chose de spécial : il combine la vitesse des langages bas niveau avec la sécurité des langages modernes. C'est un peu comme avoir une voiture de course qui ne peut pas avoir d'accident !
+
+> **Le savais-tu ?**  
+> Rust est utilisé dans des endroits super critiques comme les systèmes embarqués de voitures, les satellites, et même les navigateurs web. Si ça plante là-bas, c'est la catastrophe !
+
+**Quelques exemples concrets :**
+- **Discord** utilise Rust pour gérer des millions de messages par seconde
+- **Dropbox** l'utilise pour synchroniser tes fichiers super rapidement
+- **Cloudflare** s'en sert pour protéger internet des attaques
+- **Mozilla** l'a intégré dans Firefox pour plus de sécurité
+
+## Et pour un débutant, c'est dur ?
+
+> **Rassure-toi !**  
+> Rust a la réputation d'être difficile, mais c'est surtout parce qu'il te force à bien penser dès le début. C'est comme apprendre à conduire avec un moniteur exigeant - au début c'est frustrant, mais après tu conduis mieux que tout le monde !
+
+**La bonne nouvelle :**
+- Le compilateur t'explique exactement ce qui ne va pas
+- Il y a une communauté super sympa et accueillante
+- Les outils sont excellents (formatage automatique, vérifications, etc.)
+- Une fois que tu as compris les bases, tout devient plus logique
+
+**Les défis :**
+- Il faut un peu de temps pour comprendre l'ownership
+- La courbe d'apprentissage est plus raide qu'avec Python
+- Il faut être plus rigoureux dans sa façon de penser
+
+## Alors, on commence quand ?
+
+Si tu es arrivé jusqu'ici, c'est que Rust t'intéresse ! Et c'est normal, c'est un langage passionnant qui va te faire voir la programmation différemment.
+
+> **Mon conseil :**  
+> Ne te laisse pas impressionner par la réputation de Rust. Commence doucement, prends ton temps, et surtout, amuse-toi ! La programmation, c'est comme apprendre une nouvelle langue - au début c'est bizarre, mais après ça devient naturel.
+
+**Ce qu'on va voir ensemble :**
+- Les variables et les types (les briques de base)
+- Les fonctions (pour organiser ton code)
+- L'ownership (le concept qui rend Rust unique)
+- Les erreurs et comment les gérer
+- Et plein d'autres trucs cools !
+
+Donc voilà, c'est ça Rust. Alors, intéressé ?

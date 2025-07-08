@@ -31,6 +31,7 @@
   align-items: center;
 }
 
+
 .prose h2 {
   border-bottom: 3px solid #facc15;
   padding: 8px 16px;
@@ -55,14 +56,35 @@
   padding-left: 1.5em;
 }
 
-.prose ul > li::marker {
-  content: "* ";
+.prose ul {
+  list-style: none; /* On enlève la puce native */
+  padding-left: 0;
+}
+
+.prose ul > li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 0.5em;
+  padding-left: 1.5em;
+}
+
+.prose ul > li::before {
+  content: "✦"; /* Ou "*" si tu préfères */
   color: #facc15;
-  font-size: 1.1em;
+  font-size: 1.5em;
+  margin-right: 0.5em;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
 }
 
 .prose ol > li::marker {
   color: #facc15;
+  display: flex;
+  align-items: center;
   font-weight: bold;
 }
 

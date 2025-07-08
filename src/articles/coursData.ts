@@ -42,7 +42,7 @@ export const coursTree = [
   // Chapitre 4
   {
     key: 'chap4',
-    label: 'Structurer ses données',
+    label: 'Structurer',
     icon: 'BookOpen',
     children: [
       { key: 'chap4-les-tuples-regrouper-quelques-valeurs', label: 'Les tuples, petits paquets', importKey: 'Chap4LesTuplesRegrouperQuelquesValeurs' },
