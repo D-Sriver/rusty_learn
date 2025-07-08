@@ -37,15 +37,10 @@ export default function Presentation() {
           <span className="text-yellow-500 font-bold">Guidé par Rusty, la mascotte la plus pinceante du web&nbsp;!</span>
         </p>
       <Link
-        as="button"
-        type="button"
+        to="/cours"
         ref={commencerBtnRef}
         className="mt-2 bg-yellow-300 hover:bg-yellow-400 text-yellow-900 font-extrabold text-lg px-8 py-3 rounded-full shadow-lg border-2 border-yellow-200/60 transition-colors duration-200 focus:outline-none"
         style={{ WebkitBackdropFilter: 'blur(5px)' }}
-        onClick={() => {
-          const lastCours = localStorage.getItem('lastCoursPage');
-          navigate('/cours');
-        }}
         onMouseEnter={() => {
           if (commencerBtnRef.current) {
             gsap.to(commencerBtnRef.current, { scale: 1.08, boxShadow: '0 0 24px 4px #fde047cc', duration: 0.2 });

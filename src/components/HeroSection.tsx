@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function HeroSection() {
   return (
-    <section className="w-full max-w-5xl mx-auto mt-28 mb-6 px-6 flex flex-col items-start ">
+    <section className="w-full max-w-5xl mx-auto m-6 px-6 flex flex-col items-start ">
       <h1 className="text-5xl md:text-6xl font-extrabold text-yellow-400 mb-2 drop-shadow select-none font-sans">
         Rusty <span className="text-white">Learn</span>
       </h1>

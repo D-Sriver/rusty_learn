@@ -1,8 +1,9 @@
-import React, {useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import * as mdxPagesRaw from '../articles/mdxIndex';
 import { coursTree } from '../articles/coursData';
 import SideMenu from './SideMenu';
+import MobileSideMenu from './MobileSideMenu';
 import AstuceRusty from './AstuceRusty';
 import QCMDirect from './QCMDirect';
 import { useLocation } from 'react-router-dom';
@@ -14,12 +15,12 @@ const components = {
   QCMDirect,
 };
 
-
-export default function CoursPage() {
+export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (open: boolean) => void }) {
   const location = useLocation();
   const defaultKey = coursTree[0].children[0].key;
   const selected = useCoursStore((state) => state.selected) || defaultKey;
   const setSelected = useCoursStore((state) => state.setSelected);
+  const [mobileMenuOpen, setMobileMenuOpenLocal] = useState(false);
 
   // Si aucune sous-section n'est sélectionnée (premier chargement), on initialise avec la valeur par défaut
   useEffect(() => {
@@ -33,6 +34,11 @@ export default function CoursPage() {
       localStorage.setItem('lastCoursPage', location.pathname + location.search + location.hash);
     }
   }, [location]);
+
+  // Synchronise l'état avec le parent si besoin
+  useEffect(() => {
+    if (setMobileMenuOpen) setMobileMenuOpen(mobileMenuOpen);
+  }, [mobileMenuOpen, setMobileMenuOpen]);
 
   // N'affiche le menu que si selected est initialisé
   if (!selected) {
@@ -51,21 +57,23 @@ export default function CoursPage() {
   });
 
   return (
-    <div className="cours-card flex flex-col md:flex-row justify-center items-start min-h-[70vh] w-10/12 gap-6 md:gap-7">
-      <aside className="w-full md:w-72 mb-4 md:mb-0 md:sticky top-32 z-10">
+    <div className="cours-card flex flex-col md:flex-row md:w-11/12 p-4 justify-center items-start gap-2 md:gap-7">
+      {/* Burger menu mobile */}
+      <MobileSideMenu selected={selected} onSelect={setSelected} open={mobileMenuOpen} setOpen={setMobileMenuOpenLocal} />
+      {/* SideMenu desktop */}
+      <aside className="w-full md:w-72 mb-4 md:mb-0 md:sticky top-32 z-10 hidden md:block">
         <SideMenu selected={selected} onSelect={setSelected} />
       </aside>
-      <div className="relative w-full max-w-11/12 ">
+      <div className="relative w-full ">
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
           <div className="border-b border-white/20 px-8 pt-8 pb-4 md:px-14 md:pt-14 md:pb-6">
             <h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow mb-0">{selectedLabel}</h2>
           </div>
-                      <div className="prose prose-invert">
-              <MDXProvider components={components}>
-                {SelectedComponent && React.createElement(SelectedComponent)}
-              </MDXProvider>
-            </div>
-
+          <div className="prose prose-invert">
+            <MDXProvider components={components}>
+              {SelectedComponent && React.createElement(SelectedComponent)}
+            </MDXProvider>
+          </div>
         </div>
       </div>
     </div>
