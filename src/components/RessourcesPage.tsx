@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SideMenu from './SideMenu';
 import MobileSideMenu from './MobileSideMenu';
 import { coursTree } from '../articles/coursData';
