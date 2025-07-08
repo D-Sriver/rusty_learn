@@ -61,12 +61,12 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
       {/* Burger menu mobile */}
       <MobileSideMenu selected={selected} onSelect={setSelected} open={mobileMenuOpen} setOpen={setMobileMenuOpenLocal} />
       {/* SideMenu desktop */}
-      <aside className="w-full md:w-72 mb-4 md:mb-0 md:sticky top-32 z-10 hidden md:block">
+      <aside className="w-full md:w-96 mb-4 md:mb-0 md:sticky top-32 z-10 hidden md:block">
         <SideMenu selected={selected} onSelect={setSelected} />
       </aside>
       <div className="relative w-full ">
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
-          <div className="border-b border-white/20 px-8 pt-8 pb-4 md:px-14 md:pt-14 md:pb-6">
+          <div className="border-b border-white/20 px-8 pt-4 pb-4 md:px-8 md:pt-8 md:pb-4">
             <h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow mb-0">{selectedLabel}</h2>
           </div>
           <div className="prose prose-invert">

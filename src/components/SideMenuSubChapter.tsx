@@ -22,7 +22,7 @@ export default function SideMenuSubChapter({
       });
       gsap.to(dotRef.current, {
         scale: 1.3,
-        background: "white",
+        background: "#f59e42",
         duration: 0.2,
         ease: "power2.out",
       });
@@ -39,7 +39,7 @@ export default function SideMenuSubChapter({
       });
       gsap.to(dotRef.current, {
         scale: 1,
-        background: "#23272e",
+        background: "white",
         duration: 0.2,
         ease: "power2.out",
       });
@@ -52,7 +52,7 @@ export default function SideMenuSubChapter({
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`w-full rounded-l-3xl m-2 text-left p-3 transition-colors duration-200 text-white font-medium flex items-center gap-3
+      className={`w-full rounded-l-3xl text-left p-3 transition-colors duration-200 hover:text-yellow-500 text-white font-medium flex items-center gap-3
         ${selected ? "bg-yellow-300 text-yellow-900 font-bold hover:text-yellow-900"  : "bg-transparent"}`}
     >
       <span
