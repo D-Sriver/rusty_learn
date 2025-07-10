@@ -126,24 +126,23 @@
   border-radius: 0.8em;
   box-shadow: 0 2px 12px #0002;
   position: relative;
-
 }
 
 .prose blockquote::before {
   content: "";
-  display: inline-block;
-  padding: 2em;
-  width: 5em;
+  display: block;
+  position: absolute;
+  left: -2.0em; /* Décale Rusty à gauche du texte */
+  top: 10%;
+  transform: translateY(-50%);
+  width: 3.5em;
+  height: 3.5em;
   background-image: url('/rusty.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   margin-right: 0.5em;
-  vertical-align: middle;
-  display: flex;
-  color: #facc15;
-  font-size: 1.2em;
-  left: 0em;
+  z-index: 1;
 }
 
 .cours-card, .cours-card .prose, .cours-card  {
@@ -157,4 +156,24 @@
 } 
 .prose strong {
   color: #facc15;
+}
+
+@media (max-width: 600px) {
+  .prose blockquote {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.7em;
+    margin: 1em 0;
+    border-left-width: 3px;
+    border-radius: 0.4em;
+    font-size: 0.98em;
+    position: relative; /* Toujours relative pour le ::before */
+    min-height: 3em; /* Pour éviter que Rusty ne déborde */
+  }
+  .prose blockquote::before {
+    left: -2em;
+    top: 0.8em;
+    background-size: contain;
+    margin-right: 0.2em;
+  }
 }

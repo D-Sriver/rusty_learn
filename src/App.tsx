@@ -5,12 +5,15 @@ import Presentation from './components/Presentation';
 import HeroSection from './components/HeroSection';
 import CoursPage from './components/CoursPage';
 import RessourcesPage from './components/RessourcesPage';
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
 
 const App = () => {
   return (
     <BrowserRouter>
       <StarField />
-      <div className="w-full justify-center p-8 overflow-hidden hidden md:flex">
+      <div className="w-full justify-center p-14  hidden md:flex">
         <HeaderMenu />
       </div>
       <main className='flex flex-col items-center justify-center' id="contenu-principal" tabIndex={-1} aria-label="Contenu principal" role="main">
@@ -23,6 +26,9 @@ const App = () => {
           } />
           <Route path="/cours" element={<CoursPage />} />
           <Route path="/ressources" element={<RessourcesPage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

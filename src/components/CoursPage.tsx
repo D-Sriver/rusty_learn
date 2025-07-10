@@ -57,11 +57,11 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
   });
 
   return (
-    <div className="cours-card flex flex-col md:flex-row md:w-11/12 p-4 justify-center items-start gap-2 md:gap-7">
+    <div className="cours-card flex flex-row min-h-screen w-full md:w-11/12 justify-center items-start gap-2 md:gap-7">
       {/* Burger menu mobile */}
       <MobileSideMenu selected={selected} onSelect={setSelected} open={mobileMenuOpen} setOpen={setMobileMenuOpenLocal} />
       {/* SideMenu desktop */}
-      <aside className="w-full md:w-96 mb-4 md:mb-0 md:sticky top-32 z-10 hidden md:block">
+      <aside className="md:w-96 md:sticky top-32 z-10 hidden md:block">
         <SideMenu selected={selected} onSelect={setSelected} />
       </aside>
       <div className="relative w-full ">

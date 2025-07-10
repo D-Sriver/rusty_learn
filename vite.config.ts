@@ -11,4 +11,10 @@ export default defineConfig({
       jsxImportSource: 'react',
       providerImportSource: '@mdx-js/react'
     }),
-  ],})
+  ],
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3001',
+    },
+  },
+})
