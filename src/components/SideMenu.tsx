@@ -37,7 +37,7 @@ export default function SideMenu({
   };
 
   return (
-    <nav className="bg-white/10 border border-white/10 rounded-2xl shadow-xl backdrop-blur-xl p-2 flex flex-col gap-2 min-w-280px max-w-sm overflow-x-auto" aria-label="Navigation du cours" role="navigation">
+    <nav className="bg-white/10 border border-white/10 rounded-2xl shadow-xl backdrop-blur-xl p-2 flex flex-col gap-2 max-w-sm overflow-x-auto" aria-label="Navigation du cours" role="navigation">
       {coursTree.map((chap) => (
         <SideMenuChapter
           key={chap.key}

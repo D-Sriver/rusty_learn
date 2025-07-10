@@ -61,7 +61,7 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
       {/* Burger menu mobile */}
       <MobileSideMenu selected={selected} onSelect={setSelected} open={mobileMenuOpen} setOpen={setMobileMenuOpenLocal} />
       {/* SideMenu desktop */}
-      <aside className="md:w-96 md:sticky top-32 z-10 hidden md:block">
+      <aside className="md:w-96 md:sticky top-25 z-10 hidden md:block">
         <SideMenu selected={selected} onSelect={setSelected} />
       </aside>
       <div className="relative w-full ">

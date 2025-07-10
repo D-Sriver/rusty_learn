@@ -16,7 +16,7 @@ const App = () => {
       <div className="w-full justify-center p-14  hidden md:flex">
         <HeaderMenu />
       </div>
-      <main className='flex flex-col items-center justify-center' id="contenu-principal" tabIndex={-1} aria-label="Contenu principal" role="main">
+      <main className='flex flex-col items-center justify-center py-8' id="contenu-principal" tabIndex={-1} aria-label="Contenu principal" role="main">
         <Routes>
           <Route path="/" element={
             <>
