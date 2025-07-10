@@ -1,17 +1,22 @@
 import { useRef } from "react";
 import gsap from "gsap";
+import { useCoursStore } from "../store/useCoursStore";
 
 export default function SideMenuSubChapter({
   label,
   selected,
   onClick,
+  chapterKey,
 }: {
   label: string;
   selected: boolean;
   onClick: () => void;
+  chapterKey: string;
 }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const dotRef = useRef<HTMLSpanElement>(null);
+  const chapitresLus = useCoursStore(state => state.chapitresLus);
+  const isLu = chapitresLus.includes(chapterKey);
 
   const handleMouseEnter = () => {
     if (!selected && buttonRef.current && dotRef.current) {
@@ -61,6 +66,11 @@ export default function SideMenuSubChapter({
         style={{ background: selected ? "#733e0a" : "white" }}
       ></span>
       <span className="flex-1 min-w-0 break-words whitespace-normal">{label}</span>
+      {isLu && (
+        <span className="relative ml-2 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-400 text-yellow-900 text-xs font-bold shadow">
+          ✓
+        </span>
+      )}
     </button>
   );
 }

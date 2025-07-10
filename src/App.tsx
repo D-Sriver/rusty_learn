@@ -13,7 +13,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <StarField />
-      <div className="w-full justify-center p-14  hidden md:flex">
+      <div className="w-full justify-center p-8  hidden md:flex">
         <HeaderMenu />
       </div>
       <main className='flex flex-col items-center justify-center py-8' id="contenu-principal" tabIndex={-1} aria-label="Contenu principal" role="main">

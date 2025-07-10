@@ -160,6 +160,7 @@ export default function SideMenuChapter({
                 label={child.label}
                 selected={selectedKey === child.key}
                 onClick={() => onSelect(child.key)}
+                chapterKey={child.key}
               />
             </div>
           ))}
