@@ -14,12 +14,14 @@ export default function SideMenuChapter({
   onToggle,
   selectedKey,
   onSelect,
+  progress = [], // Ajout d'une prop pour la progression
 }: {
   chapter: TypeChapter;
   open: boolean;
   onToggle: () => void;
   selectedKey: string;
   onSelect: (key: string) => void;
+  progress?: { chapitreKey: string; dateValidation: string | null }[];
 }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const chevronRef = useRef<SVGSVGElement>(null);
@@ -161,6 +163,7 @@ export default function SideMenuChapter({
                 selected={selectedKey === child.key}
                 onClick={() => onSelect(child.key)}
                 chapterKey={child.key}
+                progress={progress}
               />
             </div>
           ))}

@@ -1,0 +1,6 @@
+{
+  "schema": "./src/schema.ts",
+  "out": "./drizzle",
+  "dialect": "postgresql",
+  "url": "postgresql://neondb_owner:npg_CIVl3oa4UOny@ep-dawn-band-a25ikkhx-pooler.eu-central-1.aws.neon.tech/rusty_learn_new2?sslmode=require&channel_binding=require"
+} 

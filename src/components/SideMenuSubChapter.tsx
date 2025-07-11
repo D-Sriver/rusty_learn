@@ -1,22 +1,23 @@
 import { useRef } from "react";
 import gsap from "gsap";
-import { useCoursStore } from "../store/useCoursStore";
 
 export default function SideMenuSubChapter({
   label,
   selected,
   onClick,
   chapterKey,
+  progress = [], // Ajout d'une prop pour la progression
 }: {
   label: string;
   selected: boolean;
   onClick: () => void;
   chapterKey: string;
+  progress?: { chapitreKey: string; dateValidation: string | null }[];
 }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const dotRef = useRef<HTMLSpanElement>(null);
-  const chapitresLus = useCoursStore(state => state.chapitresLus);
-  const isLu = chapitresLus.includes(chapterKey);
+  // On considère validé si on trouve une entrée avec ce chapitreKey et une dateValidation non nulle
+  const isLu = progress.some(p => p.chapitreKey === chapterKey && p.dateValidation);
 
   const handleMouseEnter = () => {
     if (!selected && buttonRef.current && dotRef.current) {

@@ -8,6 +8,9 @@ import AstuceRusty from './AstuceRusty';
 import QCMDirect from './QCMDirect';
 import { useLocation } from 'react-router-dom';
 import { useCoursStore } from '../store/useCoursStore';
+import { useAuthStore } from '../store/useAuthStore';
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 const mdxPages = mdxPagesRaw as Record<string, React.ComponentType>;
 const components = {
@@ -22,10 +25,8 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
   const setSelected = useCoursStore((state) => state.setSelected);
   const [mobileMenuOpen, setMobileMenuOpenLocal] = useState(false);
   const [elapsed, setElapsed] = useState(0); // temps en secondes
-  const chapitresLus = useCoursStore(state => state.chapitresLus);
-  const marquerChapitreLu = useCoursStore(state => state.marquerChapitreLu);
-  const dejaLu = chapitresLus.includes(selected);
-  const ajouterTempsChapitre = useCoursStore(state => state.ajouterTempsChapitre);
+  const user = useAuthStore(state => state.user);
+  const [progressRefreshKey, setProgressRefreshKey] = useState(0);
 
   // Si aucune sous-section n'est sélectionnée (premier chargement), on initialise avec la valeur par défaut
   useEffect(() => {
@@ -45,29 +46,25 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
     if (setMobileMenuOpen) setMobileMenuOpen(mobileMenuOpen);
   }, [mobileMenuOpen, setMobileMenuOpen]);
 
-  // Compteur de temps passé sur la page + enregistrement dans le store
+  // Compteur de temps passé sur la page (persistant)
   useEffect(() => {
-    setElapsed(0); // reset à chaque changement de page
-    let seconds = 0;
+    setElapsed(0);
+    const key = `elapsed_${user?.id}_${selected}`;
+    const saved = localStorage.getItem(key);
+    if (saved) setElapsed(Number(saved));
+
+    let seconds = saved ? Number(saved) : 0;
     let interval: ReturnType<typeof setInterval> | null = null;
-    if (!dejaLu) {
-      interval = setInterval(() => {
-        seconds++;
-        setElapsed((prev) => prev + 1);
-        // On enregistre toutes les 10 secondes pour limiter les écritures
-        if (seconds % 10 === 0) {
-          ajouterTempsChapitre(selected, 10);
-        }
-      }, 1000);
-    }
+    interval = setInterval(() => {
+      seconds++;
+      setElapsed(seconds);
+      localStorage.setItem(key, String(seconds)); // Sauvegarde à chaque tick
+    }, 1000);
     return () => {
-      // On enregistre le reliquat à la sortie
-      if (!dejaLu && seconds % 10 !== 0 && seconds > 0) {
-        ajouterTempsChapitre(selected, seconds % 10);
-      }
       if (interval) clearInterval(interval);
+      // On ne supprime pas ici, on attend la validation
     };
-  }, [selected, ajouterTempsChapitre, dejaLu]);
+  }, [selected, user]);
 
   // N'affiche le menu que si selected est initialisé
   if (!selected) {
@@ -91,7 +88,7 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
       <MobileSideMenu selected={selected} onSelect={setSelected} open={mobileMenuOpen} setOpen={setMobileMenuOpenLocal} />
       {/* SideMenu desktop */}
       <aside className="md:w-96 md:sticky top-25 z-10 hidden md:block">
-        <SideMenu selected={selected} onSelect={setSelected} />
+        <SideMenu selected={selected} onSelect={setSelected} progressRefreshKey={progressRefreshKey} />
       </aside>
       <div className="relative w-full ">
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
@@ -104,10 +101,7 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
             </MDXProvider>
           </div>
           {/* Ajout du bouton de validation de chapitre */}
-          <ValidationChapitre selected={selected} />
-          {/* Affichage du temps passé */}
-          <div className="flex justify-center items-center py-2 text-sm text-yellow-400 font-mono">
-          </div>
+          <ValidationChapitre selected={selected} user={user} elapsed={elapsed} setProgressRefreshKey={setProgressRefreshKey} />
         </div>
       </div>
     </div>
@@ -115,13 +109,26 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
 }
 
 // Nouveau composant pour la validation du chapitre
-function ValidationChapitre({ selected }: { selected: string }) {
-  const chapitresLus = useCoursStore(state => state.chapitresLus);
-  const marquerChapitreLu = useCoursStore(state => state.marquerChapitreLu);
-  const dejaLu = chapitresLus.includes(selected);
-  const [justValide, setJustValide] = React.useState(false);
+function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey }: { selected: string, user: any, elapsed: number, setProgressRefreshKey: (fn: (k: number) => number) => void }) {
+  const [done, setDone] = React.useState(false);
+  const [isAlreadyValidated, setIsAlreadyValidated] = React.useState(false);
 
-  if (dejaLu || justValide) {
+  // Ajoute ce useEffect pour reset done à chaque changement de chapitre
+  React.useEffect(() => {
+    setDone(false);
+  }, [selected]);
+
+  React.useEffect(() => {
+    if (!user) return;
+    fetch(`${API_URL}/api/progress/${user.id}`)
+      .then(res => res.json())
+      .then(data => {
+        const found = data.find((p: any) => p.chapitreKey === selected && p.dateValidation);
+        setIsAlreadyValidated(!!found);
+      });
+  }, [user, selected, done]);
+
+  if (done || isAlreadyValidated) {
     return (
       <div className="flex flex-col items-center py-6">
         <div className="text-green-500 font-bold text-lg">Bravo, tu as validé ce chapitre ! 🎉</div>
@@ -133,9 +140,21 @@ function ValidationChapitre({ selected }: { selected: string }) {
     <div className="flex flex-col items-center py-6">
       <button
         className="bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 px-6 rounded-lg shadow transition-all duration-150 mt-4"
-        onClick={() => {
-          marquerChapitreLu(selected);
-          setJustValide(true);
+        onClick={async () => {
+          if (!user) return;
+          await fetch(`${API_URL}/api/progress/save`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: user.id,
+              chapitreKey: selected,
+              tempsPasse: elapsed, // on envoie le temps cumulé
+              dateValidation: new Date().toISOString(),
+            }),
+          });
+          localStorage.removeItem(`elapsed_${user.id}_${selected}`); // On efface la sauvegarde locale
+          setDone(true);
+          setProgressRefreshKey(k => k + 1); // Force le refresh du menu latéral
         }}
       >
         J’ai terminé ce chapitre

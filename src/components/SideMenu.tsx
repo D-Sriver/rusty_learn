@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { coursTree } from "../articles/coursData";
 import { BookOpen } from "lucide-react";
 import SideMenuChapter from "./SideMenuChapter";
+import { useAuthStore } from "../store/useAuthStore";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 export const iconMap = {
   BookOpen: <BookOpen className="inline w-5 h-5 mr-2 text-yellow-400" />,
@@ -10,10 +13,24 @@ export const iconMap = {
 export default function SideMenu({
   selected,
   onSelect,
+  progressRefreshKey = 0,
 }: {
   selected: string;
   onSelect: (key: string) => void;
+  progressRefreshKey?: number;
 }) {
+  const { user } = useAuthStore();
+  const [progress, setProgress] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!user) return;
+    fetch(`${API_URL}/api/progress/${user.id}`)
+      .then(res => res.json())
+      .then(data => {
+        setProgress(data);
+      });
+  }, [user, progressRefreshKey]);
+
   // Trouve le chapitre parent de la sous-section sélectionnée
   const getParentChapterKey = (selectedKey: string) => {
     for (const chap of coursTree) {
@@ -46,6 +63,7 @@ export default function SideMenu({
           onToggle={() => toggleChapter(chap.key)}
           selectedKey={selected}
           onSelect={onSelect}
+          progress={progress}
         />
       ))}
     </nav>
