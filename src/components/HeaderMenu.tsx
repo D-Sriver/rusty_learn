@@ -1,6 +1,6 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../store/useAuthStore';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/useAuthStore";
 
 const links = [
   { to: '/', label: 'Accueil' },
@@ -13,27 +13,64 @@ export default function HeaderMenu() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [maxHeight, setMaxHeight] = useState("0px");
+  const [visible, setVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleToggle = () => {
+    if (!open) setVisible(true); // Toujours rendre visible AVANT d'ouvrir
+    setOpen((v) => !v);
+  };
+
+  // Gère la présence dans le DOM
+  useEffect(() => {
+    if (open && dropdownRef.current) {
+      // On force la hauteur à "auto" après l'expansion pour éviter le bug du double clic
+      setMaxHeight(dropdownRef.current.scrollHeight + "px");
+      const timeout = setTimeout(() => {
+        if (dropdownRef.current && open) {
+          setMaxHeight("999px"); // assez grand pour ne jamais couper le menu
+        }
+      }, 220);
+      return () => clearTimeout(timeout);
+    } else {
+      setMaxHeight("0px");
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open && visible) {
+      const timeout = setTimeout(() => setVisible(false), 220);
+      return () => clearTimeout(timeout);
+    }
+    if (open && !visible) {
+      setVisible(true);
+    }
+  }, [open, visible]);
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
     setOpen(false);
   };
 
   // Fermer le dropdown si clic en dehors
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         setOpen(false);
       }
     }
     if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
   return (
@@ -59,16 +96,25 @@ export default function HeaderMenu() {
           </Link>
         ))}
         {user ? (
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative">
             <button
+              ref={buttonRef}
               className="font-bold text-lg px-4 py-1 rounded-2xl transition-colors duration-200 select-none cursor-pointer text-yellow-400 ring-2"
               title={user.username}
-              onClick={() => setOpen((v) => !v)}
+              onClick={handleToggle}
             >
               {user.username}
             </button>
-            {open && (
-              <div className="absolute left-0 mt-2 w-44 bg-transparent backdrop-blur-sm rounded-xl shadow-lg border-2 border-yellow-400 flex flex-col z-50">
+            {visible && (
+              <div
+                ref={dropdownRef}
+                style={{
+                  maxHeight: open ? maxHeight : "0px",
+                  transition: "max-height 0.22s cubic-bezier(0.4,0,0.2,1)",
+                  overflow: "hidden",
+                }}
+                className={`absolute left-0 mt-2 w-44 bg-transparent backdrop-blur-sm rounded-xl shadow-lg border-2 border-yellow-400 flex flex-col z-50 ${open ? "" : "pointer-events-none"}`}
+              >
                 <Link
                   to="/dashboard"
                   className="px-4 py-2 text-left text-yellow-50 hover:text-yellow-400 rounded-t-xl transition-colors"
@@ -86,11 +132,9 @@ export default function HeaderMenu() {
             )}
           </div>
         ) : (
-          <>
-            <Link to="/login" className="font-bold text-lg px-4 py-1 rounded-2xl transition-colors duration-200 select-none cursor-pointer text-yellow-400 hover:bg-yellow-300 hover:text-yellow-900">
-              Connexion
-            </Link>
-          </>
+          <Link to="/login" className="font-bold text-lg px-4 py-1 rounded-2xl transition-colors duration-200 select-none cursor-pointer text-yellow-400 hover:bg-yellow-300 hover:text-yellow-900">
+            Connexion
+          </Link>
         )}
       </nav>
     </header>
