@@ -12,4 +12,5 @@ app.route('/api/auth', authRoutes);
 
 export const GET = handle(app);
 export const POST = handle(app);
-export const DELETE = handle(app); 
+export const DELETE = handle(app);
+export default handle(app); 
