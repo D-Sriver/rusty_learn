@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, loading, error, user } = useAuthStore();
+  const { login, loading, error } = useAuthStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {

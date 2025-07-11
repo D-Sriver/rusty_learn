@@ -32,20 +32,17 @@ interface ProgressItem {
 export default function Dashboard() {
   const { user } = useAuthStore();
   const [progress, setProgress] = useState<ProgressItem[]>([]);
-  const [loading, setLoading] = useState(true);
   const [resetMsg, setResetMsg] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
   useEffect(() => {
     if (!user) return;
-    setLoading(true);
     fetch(`${API_URL}/api/progress/${user.id}`)
       .then(res => res.json())
       .then(data => {
         console.log("[DASHBOARD] Progression reçue:", data); // LOG
         setProgress(data);
-        setLoading(false);
       });
   }, [user]);
 
@@ -175,7 +172,6 @@ export default function Dashboard() {
           onClick={async () => {
             if (!user) return;
             console.log("Appel reset pour userId:", user.id);
-            setLoading(true);
             await fetch(`${API_URL}/api/progress/reset/${user.id}`, { method: "DELETE" });
             setResetMsg("Progression réinitialisée !");
             // Recharge la progression
@@ -183,7 +179,6 @@ export default function Dashboard() {
               .then(res => res.json())
               .then(data => {
                 setProgress(data);
-                setLoading(false);
               });
           }}
         >
