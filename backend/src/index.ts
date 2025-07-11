@@ -13,4 +13,4 @@ app.route("/api/progress", progressRoutes);
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 serve({ fetch: app.fetch, port: PORT });
-console.log(`Serveur fonctionnel sur le port ${PORT}`); 
+console.log(`Serveur fonctionnel sur le port ${PORT}`);
