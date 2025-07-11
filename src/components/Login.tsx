@@ -8,6 +8,8 @@ export default function Login() {
   const { login, loading, error } = useAuthStore();
   const navigate = useNavigate();
 
+  console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await login(email, password);
