@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/index.ts": {
-      "runtime": "bun@latest"
+      "runtime": "nodejs20.x"
     }
   }
 }
