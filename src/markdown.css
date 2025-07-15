@@ -1,20 +1,29 @@
 /* Personnalisation du style Markdown (prose) */
+/* Variables CSS pour les couleurs principales du site */
+:root {
+  --color-primary: #facc15;         /* Jaune principal */
+  --color-primary-dark: #eab308;    /* Jaune foncé */
+  --color-secondary: #e0e7ef;       /* Bleu-gris clair */
+  --color-text-muted: #a1a1aa;      /* Gris doux */
+  --color-code-bg: #23272e;         /* Fond pour le code */
+}
+
 .prose {
-  --tw-prose-body: #e0e7ef;
-  --tw-prose-headings: #facc15;
-  --tw-prose-links: #facc15;
-  --tw-prose-bold: #facc15;
-  --tw-prose-counters: #facc15;
-  --tw-prose-bullets: #facc15;
-  --tw-prose-hr: #facc15;
-  --tw-prose-quotes: #facc15;
-  --tw-prose-quote-borders: #facc15;
-  --tw-prose-captions: #a1a1aa;
-  --tw-prose-code: #facc15;
-  --tw-prose-pre-bg: #23272e;
-  --tw-prose-pre-code: #facc15;
-  --tw-prose-th-borders: #facc15;
-  --tw-prose-td-borders: #23272e;
+  --tw-prose-body: var(--color-secondary);
+  --tw-prose-headings: var(--color-primary);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-primary);
+  --tw-prose-counters: var(--color-primary);
+  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-hr: var(--color-primary);
+  --tw-prose-quotes: var(--color-primary);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-captions: var(--color-text-muted);
+  --tw-prose-code: var(--color-primary);
+  --tw-prose-pre-bg: var(--color-code-bg);
+  --tw-prose-pre-code: var(--color-primary);
+  --tw-prose-th-borders: var(--color-primary);
+  --tw-prose-td-borders: var(--color-code-bg);
   line-height: 1.5;
   letter-spacing: 0.01em;
   padding: 2rem;
@@ -33,7 +42,7 @@
 
 
 .prose h2 {
-  border-bottom: 3px solid #facc15;
+  border-bottom: 3px solid var(--color-primary);
   padding: 8px 16px;
   margin-bottom:1em;
   border-radius: 8px;
@@ -71,7 +80,7 @@
 
 .prose ul > li::before {
   content: "✦"; /* Ou "*" si tu préfères */
-  color: #facc15;
+  color: var(--color-primary);
   font-size: 1.5em;
   margin-right: 0.5em;
   position: absolute;
@@ -82,7 +91,7 @@
 }
 
 .prose ol > li::marker {
-  color: #facc15;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -93,8 +102,8 @@
 }
 
 .prose code {
-  background: #23272e;
-  color: #facc15;
+  background: var(--color-code-bg);
+  color: var(--color-primary);
   border-radius: 0.25rem;
   padding: 0.1em 0.3em;
   font-size: 1em;
@@ -105,20 +114,18 @@
 
 .prose pre {
   background: #18181b;
-  color: #facc15;
+  color: var(--color-primary);
   border-radius: 0.8rem;
-  padding: 1.2em 1.5em;
   overflow-x: auto;
   margin: 2em 0;
   font-size: 1.05em;
-  box-shadow: 0 2px 16px #0006;
 }
 
 .prose blockquote {
   display: flex;
   justify-content: start;
-  border-left: 5px solid #facc15;
-  color: #facc15;
+  border-left: 5px solid var(--color-primary);
+  color: var(--color-primary);
   background: rgba(250, 204, 21, 0.07);
   padding-left: 1.2em;
   margin: 1.5em 0;
@@ -145,17 +152,29 @@
   z-index: 1;
 }
 
+.prose a {
+  color: var(--color-primary);
+  transition: color 0.2s, background 0.2s;
+  font-weight: bold;
+  border-radius: 0.3em;
+  padding: 0.05em 0.2em;
+}
+.prose a:hover, .prose a:focus {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
 .cours-card, .cours-card .prose, .cours-card  {
-  color: #fff !important;
+  color: var(--color-secondary) !important;
 }
 
 .prose hr {
-  border-color: #facc15;
+  border-color: var(--color-primary);
   opacity: 0.3;
   margin: 2.5em 0;
 } 
 .prose strong {
-  color: #facc15;
+  color: var(--color-primary);
 }
 
 @media (max-width: 600px) {
