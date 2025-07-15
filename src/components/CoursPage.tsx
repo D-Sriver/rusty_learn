@@ -112,6 +112,24 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
 function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey }: { selected: string, user: any, elapsed: number, setProgressRefreshKey: (fn: (k: number) => number) => void }) {
   const [done, setDone] = React.useState(false);
   const [isAlreadyValidated, setIsAlreadyValidated] = React.useState(false);
+  const setSelected = useCoursStore((state) => state.setSelected);
+
+  // Trouver la clé du chapitre suivant
+  function getNextChapterKey(currentKey: string): string | null {
+    // Aplatit tous les enfants dans un tableau
+    const allChapters: string[] = [];
+    coursTree.forEach(chap => {
+      chap.children.forEach(child => {
+        allChapters.push(child.key);
+      });
+    });
+    const idx = allChapters.indexOf(currentKey);
+    if (idx !== -1 && idx < allChapters.length - 1) {
+      return allChapters[idx + 1];
+    }
+    return null;
+  }
+  const nextKey = getNextChapterKey(selected);
 
   // Ajoute ce useEffect pour reset done à chaque changement de chapitre
   React.useEffect(() => {
@@ -130,8 +148,16 @@ function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey }: 
 
   if (done || isAlreadyValidated) {
     return (
-      <div className="flex flex-col items-center py-6">
+      <div className="flex flex-col items-center py-6 gap-4">
         <div className="text-green-500 font-bold text-lg">Bravo, tu as validé ce chapitre ! 🎉</div>
+        {nextKey && (
+          <button
+            className="bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 px-6 rounded-lg shadow transition-all duration-150"
+            onClick={() => setSelected(nextKey)}
+          >
+            Passer au chapitre suivant
+          </button>
+        )}
       </div>
     );
   }
