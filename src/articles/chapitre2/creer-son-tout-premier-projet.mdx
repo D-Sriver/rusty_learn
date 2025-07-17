@@ -1,0 +1,68 @@
+
+La on passe au choses serieuse.
+
+On va créer ensemble ton tout premier projet Rust.
+
+## 1. Ouvre ton terminal
+
+Comme d’hab, lance ton terminal préféré. (dans vscode par exemple)
+
+## 2. Tape la commande
+
+```
+cargo new hello_rust
+
+```
+
+Décomposons un peu cette commande :
+- **`cargo`** : c’est l’outil tout-en-un de Rust, un peu comme le chef d’orchestre de tes projets.
+- **`new`** : ça veut dire qu’on crée un nouveau projet.
+- **`hello_rust`** : c’est le nom que tu donnes à ton projet (tu peux choisir ce que tu veux !).
+
+> **Petit mot sur Cargo**
+> Cargo, c’est vraiment le super assistant de Rust. Il s’occupe de tout : créer des projets, compiler, gérer les dépendances (les « librairies »), lancer les tests, formater le code… Bref, il te simplifie la vie à chaque étape. Tu vas très souvent utiliser la commande `cargo` dans le terminal !
+
+Cette commande va créer un dossier `hello_rust` avec tout ce qu’il faut pour démarrer.
+
+## 3. Va dans le dossier du projet
+
+```
+cd hello_rust
+```
+
+## 4. Découvre les fichiers générés
+
+Rust a tout préparé pour toi :
+- Un fichier `Cargo.toml` (c’est le fichier de configuration du projet)
+- Un dossier `src` avec un fichier `main.rs` (c’est là que tu vas écrire ton code)
+
+## 5. Lance ton premier programme !
+
+Toujours dans le dossier du projet, tape dans le terminal :
+
+```
+cargo run
+```
+
+Tu devrais voir s’afficher :
+
+```
+Hello, world!
+```
+
+> **Astuce de Rusty**  
+> Si tu veux changer le message, ouvre le fichier `main.rs` dans le dossier `src` et modifie la ligne qui contient `Hello, world!`. Ensuite, relance `cargo run` pour voir le résultat !
+
+Bravo, tu viens de créer et d’exécuter ton tout premier programme Rust !
+
+---
+
+{*QCM de Rusty*
+=Quelle commande permet de créer un nouveau projet Rust ?=
+1:cargo new***
+2:rustc new
+3:rustup create
+4:rust project
+correct:Exact, c’est la commande magique pour démarrer !
+incorrect:Ce n’est pas tout à fait ça, mais tu vas y arriver !
+}

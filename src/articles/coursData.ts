@@ -18,11 +18,8 @@ export const coursTree = [
     icon: 'BookOpen',
     children: [
       { key: 'chap2-telecharger-et-installer-rust', label: 'Installe Rust (facile !)', importKey: 'Chap2TelechargerEtInstallerRust' },
-      { key: 'chap2-verifier-que-tout-fonctionne', label: 'Tout marche ?', importKey: 'Chap2VerifierQueToutFonctionne' },
       { key: 'chap2-creer-son-tout-premier-projet', label: 'Premier projet, let’s go !', importKey: 'Chap2CreerSonToutPremierProjet' },
-      { key: 'chap2-utiliser-un-editeur-de-texte', label: 'Ton éditeur préféré', importKey: 'Chap2UtiliserUnEditeurDeTexte' },
-      { key: 'chap2-formater-son-code-avec-rustfmt', label: 'Code tout beau', importKey: 'Chap2FormaterSonCodeAvecRustfmt' },
-      { key: 'chap2-verifier-son-code-avec-clippy', label: 'Clippy veille au grain', importKey: 'Chap2VerifierSonCodeAvecClippy' },
+      { key: 'chap2-formater-et-tester', label: 'Formatage et test', importKey: 'Chap2FormaterEtTester' },
     ],
   },
   // Chapitre 3

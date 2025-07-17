@@ -6,3 +6,7 @@ export { default as Chap1CestQuoiRustEnVrai } from './chapitre1/cest-quoi-rust-e
 
 // Chapitre 2 : Installer Rust et préparer le terrain
 export { default as Chap2TelechargerEtInstallerRust } from './chapitre2/telecharger-et-installer-rust.mdx';
+export { default as Chap2CreerSonToutPremierProjet } from './chapitre2/creer-son-tout-premier-projet.mdx';
+export { default as Chap2FormaterEtTester } from './chapitre2/formater-et-tester.mdx';
+
+

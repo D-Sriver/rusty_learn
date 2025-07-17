@@ -101,7 +101,7 @@
   margin-bottom: 0.5em;
 }
 
-.prose code {
+.prose code:not(pre code) {
   background: var(--color-code-bg);
   color: var(--color-primary);
   border-radius: 0.25rem;
@@ -112,13 +112,24 @@
   box-shadow: 0 1px 4px #0004;
 }
 
+/* Bloc de code */
 .prose pre {
-  background: #18181b;
+  background: #18181b84;
   color: var(--color-primary);
   border-radius: 0.8rem;
   overflow-x: auto;
-  margin: 2em 0;
+  margin: 1em 0;
+  padding: 1em;
   font-size: 1.05em;
+}
+
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: inherit;
 }
 
 .prose blockquote {
@@ -139,7 +150,7 @@
   content: "";
   display: block;
   position: absolute;
-  left: -2.0em; /* Décale Rusty à gauche du texte */
+  left: -2.0em;
   top: 10%;
   transform: translateY(-50%);
   width: 3.5em;
@@ -194,5 +205,20 @@
     top: 0.8em;
     background-size: contain;
     margin-right: 0.2em;
+  }
+}
+
+@media (min-width: 901px) {
+  .prose blockquote {
+    padding-left: 3.5em;
+    min-height: 4.5em;
+    border-right: 5px solid var(--color-primary);
+  }
+  .prose blockquote::before {
+    left: -2.5em;
+    top: 50%;
+    width: 6em;
+    height: 6em;
+    margin-right: 1em;
   }
 }

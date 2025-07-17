@@ -1,0 +1,64 @@
+# Formater et tester son code Rust
+
+Maintenant que tu as écrit tes premiers programmes, il est temps de prendre de bonnes habitudes : un code bien formaté et testé, c’est la base d’un développeur heureux !
+
+## 1. Formater son code avec rustfmt
+
+Rust fournit un outil magique pour rendre ton code tout beau automatiquement : **rustfmt**.
+
+Pour formater ton projet, il suffit de taper dans le terminal (à la racine du projet) :
+
+```
+cargo fmt
+```
+
+Et hop, tout est aligné, aéré, lisible. Même pas besoin de réfléchir !
+
+> **Astuce de Rusty**  
+> Tu peux configurer ton éditeur (comme VSCode) pour formater automatiquement à chaque sauvegarde. Comme ça, tu n’as même plus à y penser !
+
+## 2. Tester son code avec cargo test
+
+Rust adore les tests, et il te donne tout ce qu’il faut pour vérifier que ton code fonctionne comme prévu.
+
+Pour lancer tous les tests de ton projet, tape simplement :
+
+```
+cargo test
+```
+
+Rust va compiler ton code, exécuter tous les tests, et t’indiquer si tout est OK ou s’il y a des soucis à corriger.
+
+> **Astuce de Rusty**  
+> Pour ajouter un test, il suffit de créer une fonction spéciale dans ton fichier Rust :
+> 
+> ```rust
+> #[test]
+> fn mon_test() {
+>     assert_eq!(2 + 2, 4);
+> }
+> ```
+> 
+> Les tests sont super utiles pour éviter les bugs qui se glissent sans prévenir !
+
+---
+
+{*QCM de Rusty*
+=Quelle commande permet de formater automatiquement ton code Rust ?=
+1:cargo fmt***
+2:cargo format
+3:rustc fmt
+4:cargo run
+correct:Exact, ton code sera tout propre !
+incorrect:Ce n’est pas tout à fait ça, mais tu vas y arriver !
+}
+
+{*QCM de Rusty*
+=Comment Rust reconnaît-il une fonction de test ?=
+1:Elle commence par "test_"
+2:Elle est dans un fichier à part
+3:Elle est annotée avec #[test]***
+4:Elle est écrite en majuscules
+correct:Parfait, c’est l’annotation #[test] qui fait tout !
+incorrect:Ce n’est pas tout à fait ça, mais tu progresses !
+}
