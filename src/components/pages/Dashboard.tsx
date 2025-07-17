@@ -173,6 +173,12 @@ export default function Dashboard() {
             if (!user) return;
             console.log("Appel reset pour userId:", user.id);
             await fetch(`${API_URL}/api/progress/reset/${user.id}`, { method: "DELETE" });
+            // Ajout : suppression des timers locaux
+            Object.keys(localStorage).forEach((key) => {
+              if (key.startsWith(`elapsed_${user.id}_`)) {
+                localStorage.removeItem(key);
+              }
+            });
             setResetMsg("Progression réinitialisée !");
             // Recharge la progression
             fetch(`${API_URL}/api/progress/${user.id}`)

@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, integer, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar, integer, timestamp, unique } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -10,8 +10,10 @@ export const users = pgTable("users", {
 
 export const progress = pgTable("progress", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(), // référence à users.id
+  userId: integer("user_id").notNull(),
   chapitreKey: varchar("chapitre_key", { length: 255 }).notNull(),
   tempsPasse: integer("temps_passe").default(0).notNull(),
   dateValidation: timestamp("date_validation"),
-});
+}, (table) => ({
+  uniqueUserChapitre: unique().on(table.userId, table.chapitreKey)
+}));

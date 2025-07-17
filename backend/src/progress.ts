@@ -7,7 +7,6 @@ export const progressRoutes = new Hono();
 
 progressRoutes.post("/save", async (c) => {
   const body = await c.req.json();
-  console.log("BODY REÇU:", body); // AJOUTE CE LOG
 
   const { userId, chapitreKey, tempsPasse, dateValidation } = body;
 

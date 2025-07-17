@@ -56,14 +56,20 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
 
     let seconds = saved ? Number(saved) : 0;
     let interval: ReturnType<typeof setInterval> | null = null;
+    let lastTick = Date.now();
     interval = setInterval(() => {
-      seconds++;
-      setElapsed(seconds);
-      localStorage.setItem(key, String(seconds)); // Sauvegarde à chaque tick
+      const now = Date.now();
+      const diff = Math.round((now - lastTick) / 1000);
+      if (diff > 0) {
+        seconds += diff;
+        setElapsed(seconds);
+        localStorage.setItem(key, String(seconds));
+        lastTick = now;
+        if (import.meta.env.DEV) console.log("TICK", seconds);
+      }
     }, 1000);
     return () => {
       if (interval) clearInterval(interval);
-      // On ne supprime pas ici, on attend la validation
     };
   }, [selected, user]);
 
@@ -138,6 +144,13 @@ function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey, ha
   const [isAlreadyValidated, setIsAlreadyValidated] = React.useState(false);
   const setSelected = useCoursStore((state) => state.setSelected);
 
+  // Fonction utilitaire pour formater le temps en mm:ss
+  function formatElapsed(sec: number) {
+    const min = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${min} min ${s < 10 ? "0" : ""}${s} sec`;
+  }
+
   // Trouver la clé du chapitre suivant
   function getNextChapterKey(currentKey: string): string | null {
     // Aplatit tous les enfants dans un tableau
@@ -190,6 +203,9 @@ function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey, ha
 
   return (
     <div className="flex flex-col items-center py-6">
+      <div className="mb-2 text-yellow-200 text-lg font-mono">
+        Temps passé sur ce chapitre : <span className="font-bold">{formatElapsed(elapsed)}</span>
+      </div>
       <button
         className="bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 px-6 rounded-lg shadow transition-all duration-150 mt-4"
         onClick={async () => {
