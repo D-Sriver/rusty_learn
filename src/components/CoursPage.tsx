@@ -125,7 +125,7 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
             </MDXProvider>
           </div>
           {/* Ajout du bouton de validation de chapitre */}
-          <ValidationChapitre selected={selected} user={user} elapsed={elapsed} setProgressRefreshKey={setProgressRefreshKey} />
+          <ValidationChapitre selected={selected} user={user} elapsed={elapsed} setProgressRefreshKey={setProgressRefreshKey} hasContent={!!SelectedComponent} />
         </div>
       </div>
     </div>
@@ -133,7 +133,7 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
 }
 
 // Nouveau composant pour la validation du chapitre
-function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey }: { selected: string, user: any, elapsed: number, setProgressRefreshKey: (fn: (k: number) => number) => void }) {
+function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey, hasContent }: { selected: string, user: any, elapsed: number, setProgressRefreshKey: (fn: (k: number) => number) => void, hasContent: boolean }) {
   const [done, setDone] = React.useState(false);
   const [isAlreadyValidated, setIsAlreadyValidated] = React.useState(false);
   const setSelected = useCoursStore((state) => state.setSelected);
@@ -169,6 +169,8 @@ function ValidationChapitre({ selected, user, elapsed, setProgressRefreshKey }: 
         setIsAlreadyValidated(!!found);
       });
   }, [user, selected, done]);
+
+  if (!hasContent) return <div className="py-6"></div>;
 
   if (done || isAlreadyValidated) {
     return (
