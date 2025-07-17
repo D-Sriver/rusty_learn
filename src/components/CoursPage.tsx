@@ -97,7 +97,20 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
           </div>
           <div className="prose prose-invert">
             <MDXProvider components={components}>
-              {SelectedComponent && React.createElement(SelectedComponent)}
+              {SelectedComponent
+                ? React.createElement(SelectedComponent)
+                : (
+                  <div className="flex flex-col items-center justify-center gap-4 bg-yellow-400/10 border border-yellow-300/30 rounded-2xl shadow-lg p-10 my-8 animate-fade-in">
+                    <span className="text-5xl md:text-6xl animate-bounce-slow">⏳</span>
+                    <span className="text-yellow-200 text-2xl md:text-3xl font-bold drop-shadow text-center">
+                      Page " {selectedLabel} " à venir !
+                    </span>
+                    <span className="text-yellow-100 text-lg italic text-center max-w-xl">
+                      Ce chapitre arrive bientôt… Reste connecté!
+                    </span>
+                  </div>
+                )
+              }
             </MDXProvider>
           </div>
           {/* Ajout du bouton de validation de chapitre */}
