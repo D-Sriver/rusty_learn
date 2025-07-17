@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import * as mdxPagesRaw from '../articles/mdxIndex';
 import { coursTree } from '../articles/coursData';
@@ -27,6 +27,7 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
   const [elapsed, setElapsed] = useState(0); // temps en secondes
   const user = useAuthStore(state => state.user);
   const [progressRefreshKey, setProgressRefreshKey] = useState(0);
+  const previousSelected = useRef<string | null>(null);
 
   // Si aucune sous-section n'est sélectionnée (premier chargement), on initialise avec la valeur par défaut
   useEffect(() => {
@@ -70,6 +71,16 @@ export default function CoursPage({ setMobileMenuOpen }: { setMobileMenuOpen?: (
   if (!selected) {
     return null; // ou un loader si tu veux
   }
+
+  useEffect(() => {
+    if (previousSelected.current && previousSelected.current !== selected) {
+      // On attend la fin du rendu du nouveau chapitre
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 80); // 80ms = assez pour la plupart des rendus, ajuste si besoin
+    }
+    previousSelected.current = selected;
+  }, [selected]);
 
   let selectedLabel = '';
   let SelectedComponent: React.ComponentType | null = null;
