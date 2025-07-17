@@ -68,8 +68,8 @@ export default function SideMenuSubChapter({
       ></span>
       <span className="flex-1 min-w-0 break-words whitespace-normal">{label}</span>
       {isLu && (
-        <span className="relative ml-2 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-400 text-yellow-900 text-xs font-bold shadow">
-          ✓
+        <span className="relative inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-600 text-white font-bold ">
+          ✔
         </span>
       )}
     </button>
