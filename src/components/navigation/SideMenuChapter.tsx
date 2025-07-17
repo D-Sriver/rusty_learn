@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { ChevronRight, BookOpen } from "lucide-react";
 import gsap from "gsap";
 import SideMenuSubChapter from "./SideMenuSubChapter";
-import type { TypeChapter } from "../articles/coursData";
+import type { TypeChapter } from "@/articles/coursData";
 
 const iconMap = {
   BookOpen: <BookOpen className="inline w-5 h-5 mr-2 text-yellow-400" />,
@@ -14,7 +14,7 @@ export default function SideMenuChapter({
   onToggle,
   selectedKey,
   onSelect,
-  progress = [], // Ajout d'une prop pour la progression
+  progress = [],
 }: {
   chapter: TypeChapter;
   open: boolean;

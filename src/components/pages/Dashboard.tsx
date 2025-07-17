@@ -1,8 +1,8 @@
-import { useAuthStore } from "../store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { useEffect, useState } from "react";
-import { coursTree } from "../articles/coursData";
+import { coursTree } from "@/articles/coursData";
 import { CheckCircle, Clock, Flame } from "lucide-react";
-import MobileSideMenu from "./MobileSideMenu";
+import MobileSideMenu from "../navigation/MobileSideMenu";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 

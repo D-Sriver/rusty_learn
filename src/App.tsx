@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import StarField from './components/StarField';
-import HeaderMenu from './components/HeaderMenu';
-import Presentation from './components/Presentation';
-import HeroSection from './components/HeroSection';
-import CoursPage from './components/CoursPage';
-import RessourcesPage from './components/RessourcesPage';
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import StarField from './components/ui/StarField';
+import HeaderMenu from './components/navigation/HeaderMenu';
+import Presentation from './components/pages/Presentation';
+import HeroSection from './components/pages/HeroSection';
+import CoursPage from './components/pages/CoursPage';
+import RessourcesPage from './components/pages/RessourcesPage';
+import Register from "./components/pages/Register";
+import Login from "./components/pages/Login";
+import Dashboard from "./components/pages/Dashboard";
 
 const App = () => {
   return (

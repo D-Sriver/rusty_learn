@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const links = [
   { to: '/', label: 'Accueil' },

@@ -1,14 +1,14 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import * as mdxPagesRaw from '../articles/mdxIndex';
-import { coursTree } from '../articles/coursData';
-import SideMenu from './SideMenu';
-import MobileSideMenu from './MobileSideMenu';
-import AstuceRusty from './AstuceRusty';
-import QCMDirect from './QCMDirect';
+import * as mdxPagesRaw from '@/articles/mdxIndex';
+import { coursTree } from '@/articles/coursData';
+import SideMenu from '../navigation/SideMenu';
+import MobileSideMenu from '../navigation/MobileSideMenu';
+import AstuceRusty from '../ui/AstuceRusty';
+import QCMDirect from '../ui/QCMDirect';
 import { useLocation } from 'react-router-dom';
-import { useCoursStore } from '../store/useCoursStore';
-import { useAuthStore } from '../store/useAuthStore';
+import { useCoursStore } from '@/store/useCoursStore';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 

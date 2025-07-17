@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import MobileSideMenu from './MobileSideMenu';
-import { coursTree } from '../articles/coursData';
+import MobileSideMenu from '../navigation/MobileSideMenu';
+import { coursTree } from '@/articles/coursData';
 
 export default function RessourcesPage() {
   // On prend la première clé par défaut

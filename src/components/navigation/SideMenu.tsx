@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { coursTree } from "../articles/coursData";
+import { coursTree } from "@/articles/coursData";
 import { BookOpen } from "lucide-react";
 import SideMenuChapter from "./SideMenuChapter";
-import { useAuthStore } from "../store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
